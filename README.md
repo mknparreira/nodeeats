@@ -36,7 +36,7 @@ Coming Soon
 
 The project will be divided into the following phases:
 
-1. Setup API Gateway
+1. Setup API Gateway (**done**)
 2. Setup RabbitMQ
 3. Setup MongoDB
 4. Setup NestJS Framework
