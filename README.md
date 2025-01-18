@@ -14,30 +14,14 @@ This project aims to provide a practical learning experience by covering essenti
 
 ### RabbitMQ
 
-Coming Soon
-
-#### Overview
-
-This section explains the exchanges, queues, and bindings that are configured, and describes the flow of messages through the system.
-
-##### Exchanges
-
-Coming Soon
-
-##### Queues
-
-Coming Soon
-
-##### Bindings
-
-Coming Soon
+For more details about how RabbitMQ is configured and used in this system, check the [RabbitMQ Configuration](rabbitmq/docs/rabbitmq.md).
 
 ## Roadmap
 
 The project will be divided into the following phases:
 
 1. Setup API Gateway (**done**)
-2. Setup RabbitMQ
+2. Setup RabbitMQ (**done**)
 3. Setup MongoDB
 4. Setup NestJS Framework
 5. Resources
