@@ -1,0 +1,68 @@
+_format_version: "2.1"
+_transform: true
+
+services:
+  - name: users-service
+    url: http://localhost:8080/v1/
+    routes:
+      - name: users
+        paths:
+          - /users
+        methods:
+          - GET
+      - name: user-list
+        paths: ['/users/.+']
+        strip_path: true
+        methods:
+          - GET
+      - name: user-create
+        paths:
+          - /users
+        methods:
+          - POST
+      - name: user-update
+        paths: ['/users/.+']
+        strip_path: true
+        methods:
+          - PUT
+
+plugins:
+  - name: cors
+    config:
+      origins:
+        - "*"
+      methods:
+        - GET
+        - POST
+        - PUT
+        - PATCH
+        - DELETE
+      headers:
+        - Accept
+        - Authorization
+        - Content-Type
+      exposed_headers:
+        - X-Custom-Header
+      credentials: true
+      max_age: 3600
+  - name: jwt
+    config:
+      uri_param_names:
+        - jwt
+      claims_to_verify:
+        - exp
+  - name: request-termination
+    config:
+      status_code: 403
+      message: "Forbidden: This route is not allowed"
+  - name: request-transformer
+    config:
+      add:
+        headers: ["X-Request-ID:{{ request_id() }}"]
+  - name: response-transformer
+    config:
+      add:
+        headers:
+          - "X-Content-Type-Options:nosniff"
+          - "X-Frame-Options:DENY"
+          - "X-XSS-Protection:1; mode=block"
