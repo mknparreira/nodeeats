@@ -16,13 +16,17 @@ This project aims to provide a practical learning experience by covering essenti
 
 For more details about how RabbitMQ is configured and used in this system, check the [RabbitMQ Configuration](rabbitmq/docs/rabbitmq.md).
 
+### MongoDB
+
+For more details about how MongoDB is configured and used in this system, check the [MongoDB Configuration](mongodb/docs/mongodb.md).
+
 ## Roadmap
 
 The project will be divided into the following phases:
 
 1. Setup API Gateway (**done**)
 2. Setup RabbitMQ (**done**)
-3. Setup MongoDB
+3. Setup MongoDB (**done**)
 4. Setup NestJS Framework
 5. Resources
 6. Enhance API Security
