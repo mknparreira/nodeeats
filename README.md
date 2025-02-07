@@ -27,8 +27,8 @@ The project will be divided into the following phases:
 1. Setup API Gateway (**done**)
 2. Setup RabbitMQ (**done**)
 3. Setup MongoDB (**done**)
-4. Setup NestJS Framework
-5. Resources
+4. Setup TypeScript + Express Framework (**done**)
+5. Resources (**ongoing**)
 6. Enhance API Security
 7. Setup Kubernetes
 8. Enhance API Resilience
@@ -113,16 +113,29 @@ ME_CONFIG_BASICAUTH_PASSWORD=qwert
 
 To override these defaults, you can set the environment variables in your .env file.
 
-# 4. Setup NestJS Framework
+# 4. Setup TypeScript + Express Framework
 
-**First, why NestJS rather than Express?**
-NestJS offers a structured and scalable way to build server-side applications, making it easier to manage complex projects. Its built-in support for TypeScript, decorators, and dependency injection promotes clean and maintainable code, while still being compatible with Express under the hood.
+**First, why did I choose Express with TypeScript over NestJS?**
+
+I chose Express with TypeScript because it is very usual, especially in Serverless environments such as AWS Serveless, for companies to use Node.JS with just Express and TypeScript. This approach allows for more flexibility and a simpler structure, which is often preferred in serverless architectures where lightweight and efficient code is key.
 
 ## Features
 
-Coming Soon
-| Package | Description |
-| ------- | ----------- |
+| Package                | Description                                                                                                    |
+| ---------------------- | -------------------------------------------------------------------------------------------------------------- |
+| Express                | Fast, minimal web framework for building APIs and web applications in Node.js.                                 |
+| Typescript             | Typed superset of JavaScript that compiles to plain JavaScript, improving code safety and maintainability.     |
+| Tsnode                 | Executes TypeScript code directly in Node.js, allowing TypeScript files to run without precompiling.           |
+| Nodemon                | Automatically restarts the Node.js application when file changes are detected, improving development workflow. |
+| Prettier               | Opinionated code formatter that ensures consistent style across a codebase.                                    |
+| Eslint                 | Linter for JavaScript and TypeScript, enforcing coding standards and detecting issues in code.                 |
+| Eslint-config-prettier | Disables ESLint rules that conflict with Prettier, allowing both tools to work together seamlessly.            |
+| Eslint-plugin-prettier | Integrates Prettier into ESLint, so code formatting issues are reported as ESLint errors.                      |
+| Eslint-plugin-import   | Enforces best practices for managing imports, including sorting and resolving module paths.                    |
+| Jest                   | JavaScript testing framework for unit and integration tests with built-in mocking capabilities.                |
+| Ts Jest                | A Jest transformer that enables running TypeScript tests within Jest.                                          |
+| Typescript-eslint      | ESLint plugin and parser for TypeScript, allowing TypeScript-specific linting rules.                           |
+| Supertest              | HTTP assertion library for testing APIs, used to simulate requests and validate responses.                     |
 
 # 5. Resources
 
@@ -149,7 +162,10 @@ Coming Soon
 
 # 6. Enhance API Security
 
-TBD
+| Package | Description                                                                      |
+| ------- | -------------------------------------------------------------------------------- |
+| Helmet  | API protection against vulnerabilities in order to inject security HTTP Headers. |
+| CORS    | Enables CORS support to allow requests for another origins                       |
 
 # 7. Setup Kubernetes
 

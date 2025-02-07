@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "commonjs", // Use CommonJS module system (default for Node.js)
+    "declaration": true, // Generate .d.ts files for TypeScript definitions
+    "removeComments": true, // Remove comments from output JavaScript files
+    "emitDecoratorMetadata": true, // Emit metadata for decorators (useful for frameworks like TypeORM)
+    "experimentalDecorators": true, // Enable support for decorators (commonly used in NestJS and TypeORM)
+    "allowSyntheticDefaultImports": true, // Allow importing modules that do not have default exports
+    "esModuleInterop": true, // Improve compatibility with ES6 modules, especially for default imports
+    "target": "ES2021", // Compile TypeScript to ES2021 standard
+    "sourceMap": true, // Generate .map files for debugging with source maps
+    "outDir": "./dist", // Output compiled JavaScript files to the "dist" folder
+    "baseUrl": "./", // Base path for module resolution
+    "incremental": true, // Enable incremental compilation for faster builds
+    "skipLibCheck": true, // Skip type checking of declaration files (.d.ts) to speed up compilation
+    "strictNullChecks": false, // Ensure variables cannot be assigned `null` or `undefined` unless explicitly declared. OBS: It must be changed for true
+    "noImplicitAny": false, // Prevent using `any` type unless explicitly defined. OBS: It must be changed for true
+    "strict": false, // Enable all strict type-checking options. OBS: It must be changed for true
+    "resolveJsonModule": true, // Allow importing JSON files as modules
+    "moduleResolution": "node", // Use Node.js module resolution strategy
+    "forceConsistentCasingInFileNames": true, // Prevent case-sensitive issues when importing files
+    "noFallthroughCasesInSwitch": true, // Ensure `switch` statements always include `break` to prevent unintended fallthroughs
+    "noEmitOnError": false, // OBS: It must be changed for true
+    "paths": {
+      "@services/*": ["src/services/*"], // Alias for service modules
+      "@models/*": ["src/models/*"] // Alias for model modules
+    }
+  },
+  "include": ["src/**/*", "tests/**/*"], // Include all TypeScript files inside src and tests folder
+  "exclude": ["dist"] // Exclude "dist" folder from TypeScript compilation
+}
