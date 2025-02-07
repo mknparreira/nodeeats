@@ -27,7 +27,7 @@ The project will be divided into the following phases:
 1. Setup API Gateway (**done**)
 2. Setup RabbitMQ (**done**)
 3. Setup MongoDB (**done**)
-4. Setup NestJS Framework
+4. Setup TypeScript + Express Framework (**ongoing**)
 5. Resources
 6. Enhance API Security
 7. Setup Kubernetes
@@ -113,10 +113,10 @@ ME_CONFIG_BASICAUTH_PASSWORD=qwert
 
 To override these defaults, you can set the environment variables in your .env file.
 
-# 4. Setup NestJS Framework
+# 4. Setup TypeScript + Express Framework
 
-**First, why NestJS rather than Express?**
-NestJS offers a structured and scalable way to build server-side applications, making it easier to manage complex projects. Its built-in support for TypeScript, decorators, and dependency injection promotes clean and maintainable code, while still being compatible with Express under the hood.
+**First, why did I choose Express with TypeScript over NestJS**
+I chose Express with TypeScript because it is very usual, especially in Serverless environments such as AWS Serveless, for companies to use Node.JS with just Express and TypeScript. This approach allows for more flexibility and a simpler structure, which is often preferred in serverless architectures where lightweight and efficient code is key.
 
 ## Features
 
