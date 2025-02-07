@@ -1,6 +1,6 @@
 # Node Eats
 
-The Node Eats is a project for education purposes developed by myself and aims to demonstrate practical applications of Node.JS using [NestJS](https://nestjs.com/) in order to building a robust and scalable food delivery solution while offering hands-on experience with modern software practices and technologies.
+The Node Eats is a project for education purposes developed by myself and aims to demonstrate practical applications of Node.JS using Express in order to building a robust and scalable food delivery solution while offering hands-on experience with modern software practices and technologies.
 
 This project aims to provide a practical learning experience by covering essential components of a food delivery system, including:
 
