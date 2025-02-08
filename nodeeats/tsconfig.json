@@ -10,7 +10,8 @@
     "target": "ES2021", // Compile TypeScript to ES2021 standard
     "sourceMap": true, // Generate .map files for debugging with source maps
     "outDir": "./dist", // Output compiled JavaScript files to the "dist" folder
-    "baseUrl": "./", // Base path for module resolution
+    "baseUrl": "./src", // Base path for module resolution
+    "rootDir": "./src",
     "incremental": true, // Enable incremental compilation for faster builds
     "skipLibCheck": true, // Skip type checking of declaration files (.d.ts) to speed up compilation
     "strictNullChecks": true, // Ensure variables cannot be assigned `null` or `undefined` unless explicitly declared. OBS: It must be changed for true
@@ -22,8 +23,13 @@
     "noFallthroughCasesInSwitch": true, // Ensure `switch` statements always include `break` to prevent unintended fallthroughs
     "noEmitOnError": true, // OBS: It must be changed for true
     "paths": {
-      "@services/*": ["src/services/*"], // Alias for service modules
-      "@models/*": ["src/models/*"] // Alias for model modules
+      "@services/*": ["services/*"], // Alias for service modules
+      "@entites/*": ["entites/*"], // Alias for model modules
+      "@providers/*": ["providers/*"], // Alias for providers modules
+      "@repositories/*": ["repositories/*"], // Alias for repositories modules
+      "@handlers/*": ["handlers/*"], // Alias for handlers modules
+      "@routes/*": ["routes/*"], // Alias for routes modules
+      "@middlewares/*": ["middlewares/*"] // Alias for middleware modules
     }
   },
   "include": ["src/**/*", "tests/**/*"], // Include all TypeScript files inside src and tests folder
