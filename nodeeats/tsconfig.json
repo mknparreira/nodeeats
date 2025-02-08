@@ -13,14 +13,14 @@
     "baseUrl": "./", // Base path for module resolution
     "incremental": true, // Enable incremental compilation for faster builds
     "skipLibCheck": true, // Skip type checking of declaration files (.d.ts) to speed up compilation
-    "strictNullChecks": false, // Ensure variables cannot be assigned `null` or `undefined` unless explicitly declared. OBS: It must be changed for true
-    "noImplicitAny": false, // Prevent using `any` type unless explicitly defined. OBS: It must be changed for true
-    "strict": false, // Enable all strict type-checking options. OBS: It must be changed for true
+    "strictNullChecks": true, // Ensure variables cannot be assigned `null` or `undefined` unless explicitly declared. OBS: It must be changed for true
+    "noImplicitAny": true, // Prevent using `any` type unless explicitly defined. OBS: It must be changed for true
+    "strict": true, // Enable all strict type-checking options. OBS: It must be changed for true
     "resolveJsonModule": true, // Allow importing JSON files as modules
     "moduleResolution": "node", // Use Node.js module resolution strategy
     "forceConsistentCasingInFileNames": true, // Prevent case-sensitive issues when importing files
     "noFallthroughCasesInSwitch": true, // Ensure `switch` statements always include `break` to prevent unintended fallthroughs
-    "noEmitOnError": false, // OBS: It must be changed for true
+    "noEmitOnError": true, // OBS: It must be changed for true
     "paths": {
       "@services/*": ["src/services/*"], // Alias for service modules
       "@models/*": ["src/models/*"] // Alias for model modules
