@@ -2,11 +2,11 @@ import 'reflect-metadata';
 import dotenv from 'dotenv';
 import express from 'express';
 
+dotenv.config();
+
 import { errorMiddleware } from '@middlewares/errorHandler.middleware';
 import { DatabaseProvider } from '@providers/database.provider';
 import { router } from '@routes/routes';
-
-dotenv.config();
 
 const app = express();
 app.use(express.json());

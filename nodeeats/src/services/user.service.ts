@@ -8,7 +8,7 @@ export class UserService {
   constructor(@inject(UserRepository) private userRepository: UserRepository) {}
 
   async create(data: Partial<IUser>): Promise<IUser> {
-    const requiredFields = ['name', 'email', 'userNumber', 'phone'];
+    const requiredFields = ['name', 'email', 'phone'];
 
     const missingField = requiredFields.find(
       field =>

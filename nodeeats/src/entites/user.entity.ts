@@ -1,8 +1,11 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
+/**
+ * TypeScript Interface: Defines the entity structure at the code level.
+ * This does NOT affect how data is stored in MongoDB, but helps with type safety in the codebase.
+ */
 export interface IUser extends Document {
-  _id: string;
-  userNumber: string;
+  userNumber: mongoose.Types.ObjectId;
   name: string;
   email: string;
   phone: string;
@@ -11,14 +14,25 @@ export interface IUser extends Document {
   updatedAt?: Date;
 }
 
-const UserSchema = new Schema<IUser>({
-  userNumber: { type: String, required: true },
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-  phone: { type: String, required: true },
-  password: { type: String, required: true },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: Date.now, required: false },
-});
+/**
+ * MongoDB Schema: Defines how MongoDB expects the document to be stored in the database.
+ * This schema dictates the structure, validation, and indexing of the 'users' collection.
+ */
+const UserSchema = new Schema<IUser>(
+  {
+    userNumber: {
+      type: Schema.Types.ObjectId,
+      default: () => new mongoose.Types.ObjectId(),
+      unique: true,
+    },
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String, required: true },
+    password: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+  },
+);
 
 export const UserEntity = mongoose.model<IUser>('User', UserSchema);

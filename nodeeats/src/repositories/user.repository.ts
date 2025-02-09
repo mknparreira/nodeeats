@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { injectable } from 'tsyringe';
 
 import { IUser, UserEntity } from '@entites/user.entity';
@@ -7,6 +8,7 @@ export class UserRepository {
   constructor() {}
 
   async create(data: Partial<IUser>): Promise<IUser> {
+    data.userNumber = new mongoose.Types.ObjectId();
     return await UserEntity.create(data);
   }
 

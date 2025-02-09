@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
 
 export class DatabaseProvider {
-  private static MONGO_URI =
-    process.env.MONGO_URI ?? 'mongodb://admin:password@localhost:27017';
+  private static DATABASE_URL = process.env.DATABASE_URL;
 
   static async connect(): Promise<void> {
     try {
       mongoose.set('strictQuery', true);
-      if (!this.MONGO_URI) {
-        throw new Error('MONGO_URI is not defined');
+      if (this.DATABASE_URL == null) {
+        throw new Error('DATABASE_URL is not defined');
       }
-      await mongoose.connect(this.MONGO_URI);
+      await mongoose.connect(this.DATABASE_URL);
       console.log('Connected to MongoDB');
     } catch (error) {
       console.error('Error connecting to MongoDB:', error);
