@@ -18,6 +18,7 @@
   "license": "ISC",
   "description": "My Node.js application that demonstrates an architecture for building a complete production API with Node.JS, TypeScript, Express, MongoDB and RabbitMQ",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "express": "^4.21.2"
   },
   "devDependencies": {

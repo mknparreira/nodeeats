@@ -1,9 +1,12 @@
 import 'reflect-metadata';
+import dotenv from 'dotenv';
 import express from 'express';
 
 import { errorMiddleware } from '@middlewares/errorHandler.middleware';
 import { DatabaseProvider } from '@providers/database.provider';
 import { router } from '@routes/routes';
+
+dotenv.config();
 
 const app = express();
 app.use(express.json());
@@ -13,8 +16,9 @@ app.use(errorMiddleware);
 
 (async () => {
   await DatabaseProvider.connect();
-  app.listen(3000, () => {
-    console.log('Server started on http://localhost:3000');
+  const PORT = process.env.HOST_PORT;
+  app.listen(PORT, () => {
+    console.log(`Server started on http://localhost:${PORT}`);
   });
 })();
 
