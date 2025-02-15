@@ -27,4 +27,8 @@ export class UserRepository {
   async findUserByUserNumber(userNumber: string): Promise<IUser | null> {
     return await UserEntity.findOne({ userNumber }).exec();
   }
+
+  async all(): Promise<IUser[] | null> {
+    return await UserEntity.find().lean().exec(); // Good practice to use lean() for read-only operations
+  }
 }

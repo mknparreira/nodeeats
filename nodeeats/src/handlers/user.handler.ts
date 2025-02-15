@@ -55,4 +55,20 @@ export class UserHandler {
         .json({ error: (error as Error).message });
     }
   }
+
+  public async all(_req: Request, res: Response): Promise<Response> {
+    try {
+      const user = await this.userService.all();
+      if (!user) {
+        return res
+          .status(StatusCodes.NOT_FOUND)
+          .json({ error: 'User not found' });
+      }
+      return res.status(StatusCodes.OK).json(user);
+    } catch (error) {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: (error as Error).message });
+    }
+  }
 }

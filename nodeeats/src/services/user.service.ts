@@ -39,4 +39,8 @@ export class UserService {
 
     return await this.userRepository.findUserByUserNumber(userNumber);
   }
+
+  async all(): Promise<IUser[] | null> {
+    return await this.userRepository.all();
+  }
 }

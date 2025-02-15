@@ -23,6 +23,7 @@ userRouter.put('/', async (req: Request, res: Response, next: NextFunction) => {
     next(err);
   }
 });
+
 userRouter.get(
   '/:userNumber',
   async (req: Request, res: Response, next: NextFunction) => {
@@ -33,5 +34,13 @@ userRouter.get(
     }
   },
 );
+
+userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    await userHandler.all(req, res);
+  } catch (err) {
+    next(err);
+  }
+});
 
 export { userRouter };
