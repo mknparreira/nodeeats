@@ -15,10 +15,6 @@ export class UserRepository {
   }
 
   async edit(data: Partial<IUser>): Promise<IUser | null> {
-    if (data.userNumber == null) {
-      throw new Error('userNumber attribute is required');
-    }
-
     return await UserEntity.findOneAndUpdate(
       { userNumber: data.userNumber }, // Find the document with userNumber attribute
       data,
