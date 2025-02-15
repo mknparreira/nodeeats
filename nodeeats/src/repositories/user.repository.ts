@@ -29,6 +29,8 @@ export class UserRepository {
   async all(filter: UserFilter, skip: number, limit: number): Promise<IUser[]> {
     //Record creates an object type with string keys and unknown values
     const where: Record<string, unknown> = {}; // Using record (generic type) to avoid type errors
+    const sortBy = filter.sortBy ?? 'createdAt';
+    const order = filter.order === 'asc' ? 1 : -1;
 
     if (filter.userNumber != null) where.userNumber = filter.userNumber;
     if (filter.name != null)
@@ -36,6 +38,11 @@ export class UserRepository {
     if (filter.email != null)
       where.email = { $regex: filter.email, $options: 'i' };
 
-    return await UserEntity.find(where).skip(skip).limit(limit).lean().exec(); // Good practice using lean() for read-only operations
+    return await UserEntity.find(where)
+      .sort({ [sortBy]: order })
+      .skip(skip)
+      .limit(limit)
+      .lean() // Good practice using lean() for read-only operations
+      .exec();
   }
 }

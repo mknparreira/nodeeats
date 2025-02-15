@@ -53,6 +53,8 @@ export class UserHandler {
         userNumber: req.query.userNumber as string,
         name: req.query.name as string,
         email: req.query.email as string,
+        sortBy: req.query.sortBy as string,
+        order: req.query.order as 'asc' | 'desc',
       };
       const { skip, limit } = pagination(req.query);
       const users = this.userService.all(filter, skip, limit);
