@@ -3,6 +3,10 @@ import { injectable, inject } from 'tsyringe';
 
 import { UserService } from '@services/user.service';
 
+import { CreateUserRequestDto } from '../dto/requests/createUserRequest.dto';
+import { UpdateUserRequestDto } from '../dto/requests/updateUserRequest.dto';
+import { UserResponseDto } from '../dto/responses/userResponse.dto';
+import { IUser } from '../entites/user.entity';
 import { UserFilter } from '../types/userFilter.type';
 import { handleRequest } from '../utils/handleRequest.util';
 import { pagination } from '../utils/pagination.util';
@@ -13,16 +17,19 @@ export class UserHandler {
 
   public async create(req: Request, res: Response): Promise<Response> {
     return handleRequest(res, async () => {
-      return await this.userService.create(req.body);
+      const createUserDto = new CreateUserRequestDto(req.body);
+      const user = await this.userService.create(createUserDto);
+      return new UserResponseDto(user);
     });
   }
 
   public async update(req: Request, res: Response): Promise<Response> {
     return handleRequest(res, async () => {
-      const user = await this.userService.update(req.body);
+      const updateUserDto = new UpdateUserRequestDto(req.body);
+      const user = await this.userService.update(updateUserDto);
       if (!user) throw new Error('User not found');
 
-      return user;
+      return new UserResponseDto(user);
     });
   }
 
@@ -36,7 +43,7 @@ export class UserHandler {
       );
       if (!user) throw new Error('User not found');
 
-      return user;
+      return new UserResponseDto(user);
     });
   }
 
@@ -48,7 +55,9 @@ export class UserHandler {
         email: req.query.email as string,
       };
       const { skip, limit } = pagination(req.query);
-      return this.userService.all(filter, skip, limit);
+      const users = this.userService.all(filter, skip, limit);
+
+      return (await users).map((user: IUser) => new UserResponseDto(user));
     });
   }
 }

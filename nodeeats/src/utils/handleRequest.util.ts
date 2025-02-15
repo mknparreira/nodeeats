@@ -6,8 +6,8 @@ async function handleRequest<T>(
   handle: () => Promise<T>,
 ): Promise<Response> {
   try {
-    const result = await handle();
-    return res.status(StatusCodes.OK).json(result);
+    const response = await handle();
+    return res.status(StatusCodes.OK).json({ data: response });
   } catch (error) {
     return res
       .status(StatusCodes.BAD_REQUEST)
