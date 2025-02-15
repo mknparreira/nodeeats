@@ -14,11 +14,11 @@ export class UserRepository {
 
   async edit(data: Partial<IUser>): Promise<IUser | null> {
     if (data.userNumber == null) {
-      throw new Error('userNumber is required');
+      throw new Error('userNumber attribute is required');
     }
 
     return await UserEntity.findOneAndUpdate(
-      { userNumber: data.userNumber },
+      { userNumber: data.userNumber }, // Find the document with this userNumber
       data,
       { new: true }, // Return the updated document
     ).exec();
