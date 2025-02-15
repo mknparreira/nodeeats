@@ -30,11 +30,7 @@ export class UserRepository {
     return await UserEntity.findOne({ userNumber }).exec();
   }
 
-  async all(
-    filter: UserFilter,
-    skip: number,
-    limit: number,
-  ): Promise<IUser[] | null> {
+  async all(filter: UserFilter, skip: number, limit: number): Promise<IUser[]> {
     //Record creates an object type with string keys and unknown values
     const where: Record<string, unknown> = {}; // Using record (generic type) to avoid type errors
 

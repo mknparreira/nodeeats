@@ -27,7 +27,7 @@ export class UserService {
 
   async update(data: Partial<IUser>): Promise<IUser | null> {
     if (data.userNumber === undefined || data.userNumber === null) {
-      throw new Error('userNumber attribute is required');
+      throw new Error('userNumber is required');
     }
     data.updatedAt = new Date();
 
@@ -36,17 +36,13 @@ export class UserService {
 
   async getUserByUserNumber(userNumber: string): Promise<IUser | null> {
     if (!userNumber) {
-      throw new Error('userNumber attribute is required');
+      throw new Error('userNumber is required');
     }
 
     return await this.userRepository.findUserByUserNumber(userNumber);
   }
 
-  async all(
-    filter: UserFilter,
-    skip: number,
-    take: number,
-  ): Promise<IUser[] | null> {
+  async all(filter: UserFilter, skip: number, take: number): Promise<IUser[]> {
     return await this.userRepository.all(filter, skip, take);
   }
 }
