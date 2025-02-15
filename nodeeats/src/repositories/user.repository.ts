@@ -3,6 +3,8 @@ import { injectable } from 'tsyringe';
 
 import { IUser, UserEntity } from '@entites/user.entity';
 
+import { UserFilter } from '../types/userFilter.type';
+
 @injectable()
 export class UserRepository {
   constructor() {}
@@ -18,9 +20,9 @@ export class UserRepository {
     }
 
     return await UserEntity.findOneAndUpdate(
-      { userNumber: data.userNumber }, // Find the document with this userNumber
+      { userNumber: data.userNumber }, // Find the document with userNumber attribute
       data,
-      { new: true }, // Return the updated document
+      { new: true }, // Return the updated document instead of the original document
     ).exec();
   }
 
@@ -28,7 +30,20 @@ export class UserRepository {
     return await UserEntity.findOne({ userNumber }).exec();
   }
 
-  async all(): Promise<IUser[] | null> {
-    return await UserEntity.find().lean().exec(); // Good practice to use lean() for read-only operations
+  async all(
+    filter: UserFilter,
+    skip: number,
+    limit: number,
+  ): Promise<IUser[] | null> {
+    //Record creates an object type with string keys and unknown values
+    const where: Record<string, unknown> = {}; // Using record (generic type) to avoid type errors
+
+    if (filter.userNumber != null) where.userNumber = filter.userNumber;
+    if (filter.name != null)
+      where.name = { $regex: filter.name, $options: 'i' };
+    if (filter.email != null)
+      where.email = { $regex: filter.email, $options: 'i' };
+
+    return await UserEntity.find(where).skip(skip).limit(limit).lean().exec(); // Good practice using lean() for read-only operations
   }
 }

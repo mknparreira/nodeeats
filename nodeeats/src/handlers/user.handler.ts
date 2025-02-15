@@ -4,6 +4,9 @@ import { injectable, inject } from 'tsyringe';
 
 import { UserService } from '@services/user.service';
 
+import { UserFilter } from '../types/userFilter.type';
+import { pagination } from '../utils/pagination.util';
+
 @injectable()
 export class UserHandler {
   constructor(@inject(UserService) private userService: UserService) {}
@@ -56,9 +59,16 @@ export class UserHandler {
     }
   }
 
-  public async all(_req: Request, res: Response): Promise<Response> {
+  public async all(req: Request, res: Response): Promise<Response> {
     try {
-      const user = await this.userService.all();
+      const filter: UserFilter = {
+        userNumber: req.query.userNumber as string,
+        name: req.query.name as string,
+        email: req.query.email as string,
+      };
+      const { skip, limit } = pagination(req.query);
+      const user = await this.userService.all(filter, skip, limit);
+
       if (!user) {
         return res
           .status(StatusCodes.NOT_FOUND)

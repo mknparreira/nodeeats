@@ -3,6 +3,8 @@ import { injectable, inject } from 'tsyringe';
 import { IUser } from '@entites/user.entity';
 import { UserRepository } from '@repositories/user.repository';
 
+import { UserFilter } from '../types/userFilter.type';
+
 @injectable()
 export class UserService {
   constructor(@inject(UserRepository) private userRepository: UserRepository) {}
@@ -40,7 +42,11 @@ export class UserService {
     return await this.userRepository.findUserByUserNumber(userNumber);
   }
 
-  async all(): Promise<IUser[] | null> {
-    return await this.userRepository.all();
+  async all(
+    filter: UserFilter,
+    skip: number,
+    take: number,
+  ): Promise<IUser[] | null> {
+    return await this.userRepository.all(filter, skip, take);
   }
 }
