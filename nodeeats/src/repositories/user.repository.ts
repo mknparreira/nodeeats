@@ -20,7 +20,7 @@ export class UserRepository {
     return await UserEntity.findOneAndUpdate(
       { userNumber: data.userNumber },
       data,
-      { new: true },
+      { new: true }, // Return the updated document
     ).exec();
   }
 

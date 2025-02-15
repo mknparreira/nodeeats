@@ -27,6 +27,7 @@ export class UserService {
     if (data.userNumber === undefined || data.userNumber === null) {
       throw new Error('userNumber attribute is required');
     }
+    data.updatedAt = new Date();
 
     return await this.userRepository.edit(data);
   }
