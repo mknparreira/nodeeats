@@ -10,20 +10,29 @@
     "target": "ES2021", // Compile TypeScript to ES2021 standard
     "sourceMap": true, // Generate .map files for debugging with source maps
     "outDir": "./dist", // Output compiled JavaScript files to the "dist" folder
-    "baseUrl": "./", // Base path for module resolution
+    "baseUrl": ".", // Base path for module resolution
+    "rootDirs": ["src", "tests"], // Allow importing modules from multiple directories
     "incremental": true, // Enable incremental compilation for faster builds
     "skipLibCheck": true, // Skip type checking of declaration files (.d.ts) to speed up compilation
-    "strictNullChecks": false, // Ensure variables cannot be assigned `null` or `undefined` unless explicitly declared. OBS: It must be changed for true
-    "noImplicitAny": false, // Prevent using `any` type unless explicitly defined. OBS: It must be changed for true
-    "strict": false, // Enable all strict type-checking options. OBS: It must be changed for true
+    "strictNullChecks": true, // Ensure variables cannot be assigned `null` or `undefined` unless explicitly declared. OBS: It must be changed for true
+    "noImplicitAny": true, // Prevent using `any` type unless explicitly defined. OBS: It must be changed for true
+    "strict": true, // Enable all strict type-checking options. OBS: It must be changed for true
     "resolveJsonModule": true, // Allow importing JSON files as modules
     "moduleResolution": "node", // Use Node.js module resolution strategy
     "forceConsistentCasingInFileNames": true, // Prevent case-sensitive issues when importing files
     "noFallthroughCasesInSwitch": true, // Ensure `switch` statements always include `break` to prevent unintended fallthroughs
-    "noEmitOnError": false, // OBS: It must be changed for true
+    "noEmitOnError": true, // OBS: It must be changed for true
     "paths": {
       "@services/*": ["src/services/*"], // Alias for service modules
-      "@models/*": ["src/models/*"] // Alias for model modules
+      "@entites/*": ["src/entites/*"], // Alias for model modules
+      "@providers/*": ["src/providers/*"], // Alias for providers modules
+      "@repositories/*": ["src/repositories/*"], // Alias for repositories modules
+      "@handlers/*": ["src/handlers/*"], // Alias for handlers modules
+      "@routes/*": ["src/routes/*"], // Alias for routes modules
+      "@middlewares/*": ["src/middlewares/*"], // Alias for middleware modules
+      "@utils/*": ["src/utils/*"], // Alias for utility modules
+      "@tests/*": ["tests/*"], // Alias for test modules
+      "@mocks/*": ["tests/mocks/*"] // Alias for test modules
     }
   },
   "include": ["src/**/*", "tests/**/*"], // Include all TypeScript files inside src and tests folder

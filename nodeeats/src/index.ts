@@ -1,13 +1,32 @@
+import 'reflect-metadata';
+import dotenv from 'dotenv';
 import express from 'express';
 
+dotenv.config();
+
+import { errorMiddleware } from '@middlewares/errorHandler.middleware';
+import { DatabaseProvider } from '@providers/database.provider';
+import { router } from '@routes/routes';
+
 const app = express();
+app.use(express.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello, Node Eats!');
-});
+app.use('/api/v1', router);
+app.use(errorMiddleware);
 
-app.listen(3000, () => {
-  console.log('Server running on http://localhost:3000');
+(async () => {
+  await DatabaseProvider.connect();
+  const PORT = process.env.HOST_PORT;
+  app.listen(PORT, () => {
+    console.log(`Server started on http://localhost:${PORT}`);
+  });
+})();
+
+process.on('SIGINT', async () => {
+  console.log('Closing database connection...');
+  await DatabaseProvider.disconnect();
+  console.log('Server stopped.');
+  process.exit(0);
 });
 
 export default app;

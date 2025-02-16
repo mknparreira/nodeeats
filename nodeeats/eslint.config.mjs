@@ -39,6 +39,14 @@ export default [
       '@typescript-eslint': tseslint.plugin,
       import: importPlugin,
     },
+    settings: {
+      'import/resolver': {
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json',
+        },
+      },
+    },
     rules: {
       'no-console': 'warn',
       semi: ['error', 'always'],

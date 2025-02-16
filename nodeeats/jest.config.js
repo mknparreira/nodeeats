@@ -32,6 +32,12 @@ module.exports = {
   // Path mappings to support TypeScript aliases
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
+    '^@entites/(.*)$': '<rootDir>/src/entites/$1',
+    '^@repositories/(.*)$': '<rootDir>/src/repositories/$1',
+    '^@mocks/(.*)$': '<rootDir>/tests/mocks/$1',
+    '^@services/(.*)$': '<rootDir>/src/services/$1',
+    '^@handlers/(.*)$': '<rootDir>/src/handlers/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
   },
 
   // Configures Jest to automatically clear mocks before each test

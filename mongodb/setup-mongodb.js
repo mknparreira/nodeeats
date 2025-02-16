@@ -1,32 +1,43 @@
-db = db.getSiblingDB('ubereats');
+db = db.getSiblingDB('nodeeats');
 
 db.createCollection('users', {
   validator: {
     $jsonSchema: {
       bsonType: 'object',
-      required: ['userId', 'name', 'email', 'password'],
+      required: ['name', 'email', 'phone', 'password'],
       properties: {
         userId: {
-          bsonType: 'string',
-          description: 'must be an string and is required'
+          bsonType: 'objectId',
+          description: 'must be a ObjectId and is required',
+        },
+        userNumber: {
+          bsonType: 'objectId',
+          description: 'must be an ObjectId and is generated automatically',
         },
         name: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         email: {
           bsonType: 'string',
-          pattern: '^.+@.+\..+$',
-          description: 'must be a string matching email format and is required'
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$',
+          description: 'must be a valid email format and is required',
+        },
+        phone: {
+          bsonType: 'string',
+          description: 'must be a string and is required',
         },
         password: {
           bsonType: 'string',
-          description: 'must be a string and is required'
-        }
-      }
-    }
-  }
+          description: 'must be a string and is required',
+        },
+      },
+    },
+  },
 });
+
+db.users.createIndex({ userNumber: 1 }, { unique: true });
+db.users.createIndex({ email: 1 }, { unique: true });
 
 db.createCollection('restaurants', {
   validator: {
@@ -36,11 +47,11 @@ db.createCollection('restaurants', {
       properties: {
         restaurantId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         name: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         address: {
           bsonType: 'object',
@@ -48,32 +59,32 @@ db.createCollection('restaurants', {
           properties: {
             street: {
               bsonType: 'string',
-              description: 'must be a string and is required'
+              description: 'must be a string and is required',
             },
             city: {
               bsonType: 'string',
-              description: 'must be a string and is required'
+              description: 'must be a string and is required',
             },
             zipCode: {
               bsonType: 'string',
-              description: 'must be a string and is required'
-            }
-          }
+              description: 'must be a string and is required',
+            },
+          },
         },
         categories: {
           bsonType: 'array',
           items: {
             bsonType: 'string',
-            description: 'must be an array of strings'
-          }
+            description: 'must be an array of strings',
+          },
         },
         status: {
           enum: ['open', 'closed'],
-          description: 'must be either "open" or "closed"'
-        }
-      }
-    }
-  }
+          description: 'must be either "open" or "closed"',
+        },
+      },
+    },
+  },
 });
 
 db.createCollection('menus', {
@@ -84,11 +95,11 @@ db.createCollection('menus', {
       properties: {
         menuId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         restaurantId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         items: {
           bsonType: 'array',
@@ -98,22 +109,22 @@ db.createCollection('menus', {
             properties: {
               itemId: {
                 bsonType: 'string',
-                description: 'must be a string and is required'
+                description: 'must be a string and is required',
               },
               name: {
                 bsonType: 'string',
-                description: 'must be a string and is required'
+                description: 'must be a string and is required',
               },
               price: {
                 bsonType: 'number',
-                description: 'must be a number and is required'
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+                description: 'must be a number and is required',
+              },
+            },
+          },
+        },
+      },
+    },
+  },
 });
 
 db.createCollection('categories', {
@@ -124,15 +135,15 @@ db.createCollection('categories', {
       properties: {
         categoryId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         name: {
           bsonType: 'string',
-          description: 'must be a string and is required'
-        }
-      }
-    }
-  }
+          description: 'must be a string and is required',
+        },
+      },
+    },
+  },
 });
 
 db.createCollection('orders', {
@@ -143,15 +154,15 @@ db.createCollection('orders', {
       properties: {
         orderId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         userId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         restaurantId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         items: {
           bsonType: 'array',
@@ -161,82 +172,97 @@ db.createCollection('orders', {
             properties: {
               itemId: {
                 bsonType: 'string',
-                description: 'must be a string and is required'
+                description: 'must be a string and is required',
               },
               quantity: {
                 bsonType: 'int',
                 minimum: 1,
-                description: 'must be an integer greater than 0 and is required'
-              }
-            }
-          }
+                description:
+                  'must be an integer greater than 0 and is required',
+              },
+            },
+          },
         },
         status: {
           enum: ['pending', 'confirmed', 'delivered', 'cancelled'],
-          description: 'must be one of the defined statuses'
-        }
-      }
-    }
-  }
+          description: 'must be one of the defined statuses',
+        },
+      },
+    },
+  },
 });
 
 db.createCollection('payments', {
   validator: {
     $jsonSchema: {
       bsonType: 'object',
-      required: ['paymentId', 'orderId', 'userId', 'amount', 'status', 'paymentMethod'],
+      required: [
+        'paymentId',
+        'orderId',
+        'userId',
+        'amount',
+        'status',
+        'paymentMethod',
+      ],
       properties: {
         paymentId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         orderId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         userId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         amount: {
           bsonType: 'number',
           minimum: 0,
-          description: 'must be a number greater than or equal to 0 and is required'
+          description:
+            'must be a number greater than or equal to 0 and is required',
         },
         status: {
           enum: ['pending', 'completed', 'failed', 'refunded'],
-          description: 'must be one of the defined statuses'
+          description: 'must be one of the defined statuses',
         },
         paymentMethod: {
           bsonType: 'string',
-          description: 'must be a string and is required'
-        }
-      }
-    }
-  }
+          description: 'must be a string and is required',
+        },
+      },
+    },
+  },
 });
 
 db.createCollection('deliveries', {
   validator: {
     $jsonSchema: {
       bsonType: 'object',
-      required: ['deliveryId', 'orderId', 'courierId', 'status', 'trackingInfo'],
+      required: [
+        'deliveryId',
+        'orderId',
+        'courierId',
+        'status',
+        'trackingInfo',
+      ],
       properties: {
         deliveryId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         orderId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         courierId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         status: {
           enum: ['pending', 'in-transit', 'delivered', 'failed'],
-          description: 'must be one of the defined statuses'
+          description: 'must be one of the defined statuses',
         },
         trackingInfo: {
           bsonType: 'object',
@@ -244,17 +270,17 @@ db.createCollection('deliveries', {
           properties: {
             latitude: {
               bsonType: 'double',
-              description: 'must be a number representing latitude'
+              description: 'must be a number representing latitude',
             },
             longitude: {
               bsonType: 'double',
-              description: 'must be a number representing longitude'
-            }
-          }
-        }
-      }
-    }
-  }
+              description: 'must be a number representing longitude',
+            },
+          },
+        },
+      },
+    },
+  },
 });
 
 db.createCollection('reviews', {
@@ -265,29 +291,29 @@ db.createCollection('reviews', {
       properties: {
         reviewId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         userId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         restaurantId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         rating: {
           bsonType: 'int',
           minimum: 1,
           maximum: 5,
-          description: 'must be an integer between 1 and 5'
+          description: 'must be an integer between 1 and 5',
         },
         comment: {
           bsonType: 'string',
-          description: 'must be a string and is optional'
-        }
-      }
-    }
-  }
+          description: 'must be a string and is optional',
+        },
+      },
+    },
+  },
 });
 
 db.createCollection('notifications', {
@@ -298,25 +324,26 @@ db.createCollection('notifications', {
       properties: {
         notificationId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         userId: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         type: {
           bsonType: 'string',
-          description: 'must be a string indicating the type of notification and is required'
+          description:
+            'must be a string indicating the type of notification and is required',
         },
         message: {
           bsonType: 'string',
-          description: 'must be a string and is required'
+          description: 'must be a string and is required',
         },
         createdAt: {
           bsonType: 'date',
-          description: 'must be a date and is required'
-        }
-      }
-    }
-  }
+          description: 'must be a date and is required',
+        },
+      },
+    },
+  },
 });
