@@ -143,7 +143,7 @@ All resources, including repository, service, module, model, and handler layers.
 
 | Resource     | Description                                                                                          | Status |
 | ------------ | ---------------------------------------------------------------------------------------------------- | ------ |
-| User         | Manages user registration, editing, and viewing information such as name, email, and authentication. |        |
+| User         | Manages user registration, editing, and viewing information such as name, email, and authentication. | done   |
 | Restaurant   | Manages restaurant details, menu offerings, opening hours, and availability status.                  |        |
 | Menu         | Handles menu items for restaurants, including categories and product descriptions                    |        |
 | Category     | Organizes and classifies restaurants and menu items into categories.                                 |        |
@@ -155,10 +155,15 @@ All resources, including repository, service, module, model, and handler layers.
 
 ## Features
 
-Coming Soon
-
-| Package | Description |
-| ------- | ----------- |
+| Package                           | Description                                                                                     |
+| --------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Dotenv                            | Loads environment variables from a .env file.                                                   |
+| Tsconfig-paths                    | Enables TypeScript path aliases resolution at runtime.                                          |
+| Eslint-import-resolver-typescript | Helps ESLint resolve TypeScript paths correctly.                                                |
+| Mongoose                          | ODM (Object Data Modeling) library for MongoDB, providing schema validation and query building. |
+| Reflect-metadata                  | Required for decorators in TypeScript, especially for dependency injection with tsyringe.       |
+| Tsyringe                          | Lightweight dependency injection container for TypeScript.                                      |
+| Http-status-codes                 | Provides named constants for HTTP status codes, improving code readability                      |
 
 # 6. Enhance API Security
 
