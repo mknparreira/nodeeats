@@ -37,6 +37,7 @@ module.exports = {
     '^@mocks/(.*)$': '<rootDir>/tests/mocks/$1',
     '^@services/(.*)$': '<rootDir>/src/services/$1',
     '^@handlers/(.*)$': '<rootDir>/src/handlers/$1',
+    '^@utils/(.*)$': '<rootDir>/src/utils/$1',
   },
 
   // Configures Jest to automatically clear mocks before each test
