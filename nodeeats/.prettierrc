@@ -9,6 +9,5 @@
 
   "bracketSpacing": true,
   "proseWrap": "preserve",
-  "jsxBracketSameLine": false,
   "printWidth": 80
 }
