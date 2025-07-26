@@ -29,12 +29,6 @@ describe('UserService', () => {
     expect(result).toEqual(mockUser);
   });
 
-  it('should throw an error if a required field is missing', async () => {
-    await expect(
-      userService.create({ email: 'test@example.com', phone: '123456789' }),
-    ).rejects.toThrow('name is required');
-  });
-
   it('should update a user successfully', async () => {
     userRepository.edit.mockResolvedValue(mockUser as IUser);
 
@@ -43,12 +37,6 @@ describe('UserService', () => {
 
     expect(userRepository.edit).toHaveBeenCalledWith(updatedUser);
     expect(result).toEqual(mockUser);
-  });
-
-  it('should throw an error when updating without userNumber', async () => {
-    await expect(userService.update({ name: 'New Name' })).rejects.toThrow(
-      'userNumber is required',
-    );
   });
 
   it('should retrieve a user by userNumber', async () => {
@@ -62,12 +50,6 @@ describe('UserService', () => {
       mockUser.userNumber.toString(),
     );
     expect(result).toEqual(mockUser);
-  });
-
-  it('should throw an error if userNumber is not provided when retrieving', async () => {
-    await expect(userService.getUserByUserNumber('')).rejects.toThrow(
-      'userNumber is required',
-    );
   });
 
   it('should return all users with filters and pagination', async () => {

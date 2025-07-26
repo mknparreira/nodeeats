@@ -8,6 +8,10 @@ import { UserService } from '@services/user.service';
 
 import { UserResponseDto } from '../../src/dto/responses/userResponse.dto';
 import { IUser } from '../../src/entites/user.entity';
+import {
+  CreateUserValidate,
+  UpdateUserValidate,
+} from '../../src/validates/user.validate';
 
 jest.mock('@services/user.service');
 
@@ -113,6 +117,78 @@ describe('UserHandler', () => {
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({
       data: mockUserList.map(user => new UserResponseDto(user as IUser)),
+    });
+  });
+
+  describe('CreateUserValidate schema', () => {
+    it('should fail when name is empty', () => {
+      const result = CreateUserValidate.safeParse({
+        name: '',
+        email: 'valid@email.com',
+        phone: '12345678',
+        password: '123456',
+      });
+
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.flatten().fieldErrors.name).toBeDefined();
+      }
+    });
+
+    it('should fail when email is invalid', () => {
+      const result = CreateUserValidate.safeParse({
+        name: 'John',
+        email: 'invalid-email',
+        phone: '12345678',
+        password: '123456',
+      });
+
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.flatten().fieldErrors.email).toBeDefined();
+      }
+    });
+
+    it('should fail when phone is too short', () => {
+      const result = CreateUserValidate.safeParse({
+        name: 'John',
+        email: 'john@email.com',
+        phone: '123',
+        password: '123456',
+      });
+
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.flatten().fieldErrors.phone).toBeDefined();
+      }
+    });
+
+    it('should fail when password is too short', () => {
+      const result = CreateUserValidate.safeParse({
+        name: 'John',
+        email: 'john@email.com',
+        phone: '12345678',
+        password: '123',
+      });
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.flatten().fieldErrors.password).toBeDefined();
+      }
+    });
+  });
+
+  describe('UpdateUserValidate schema', () => {
+    it('should fail when userNumber is missing', () => {
+      const result = UpdateUserValidate.safeParse({
+        name: 'John',
+        email: 'john@email.com',
+        phone: '12345678',
+        password: '123456',
+      });
+      expect(result.success).toBe(false);
+      if (!result.success) {
+        expect(result.error.flatten().fieldErrors.userNumber).toBeDefined();
+      }
     });
   });
 });
