@@ -1,46 +1,34 @@
-import { NextFunction, Router, Request, Response } from 'express';
+import { Router } from 'express';
 import { container } from 'tsyringe';
 
 import { UserHandler } from '@handlers/user.handler';
+import { validate } from '@middlewares/validateRequest.middleware';
+
+import {
+  CreateUserValidate,
+  UpdateUserValidate,
+} from '../validates/user.validate';
 
 const userRouter = Router();
 const userHandler = container.resolve(UserHandler);
 
 userRouter.post(
   '/',
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await userHandler.create(req, res);
-    } catch (err) {
-      next(err);
-    }
-  },
+  validate(CreateUserValidate),
+  async (req, res) => await userHandler.create(req, res),
 );
-userRouter.put('/', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    await userHandler.update(req, res);
-  } catch (err) {
-    next(err);
-  }
-});
+
+userRouter.put(
+  '/',
+  validate(UpdateUserValidate),
+  async (req, res) => await userHandler.update(req, res),
+);
 
 userRouter.get(
   '/:userNumber',
-  async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await userHandler.getUserByUserNumber(req, res);
-    } catch (err) {
-      next(err);
-    }
-  },
+  async (req, res) => await userHandler.getUserByUserNumber(req, res),
 );
 
-userRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    await userHandler.all(req, res);
-  } catch (err) {
-    next(err);
-  }
-});
+userRouter.get('/', async (req, res) => await userHandler.all(req, res));
 
 export { userRouter };
