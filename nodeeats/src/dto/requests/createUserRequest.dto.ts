@@ -1,4 +1,5 @@
 import { IUser } from '../../entites/user.entity';
+import { CreateUserValidate } from '../../validates/user.validate';
 
 export class CreateUserRequestDto {
   name: string;
@@ -8,10 +9,11 @@ export class CreateUserRequestDto {
   createdAt: Date;
 
   constructor(body: IUser) {
-    this.name = body.name;
-    this.email = body.email;
-    this.phone = body.phone;
-    this.password = body.password;
+    const parsed = CreateUserValidate.parse(body);
+    this.name = parsed.name;
+    this.email = parsed.email;
+    this.phone = parsed.phone;
+    this.password = parsed.password;
     this.createdAt = new Date();
   }
 }

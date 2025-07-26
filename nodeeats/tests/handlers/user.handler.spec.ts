@@ -51,6 +51,11 @@ describe('UserHandler', () => {
   });
 
   it('should update a user', async () => {
+    req.body = {
+      userNumber: mockUser.userNumber.toString(), // obrigatório e precisa ser string
+      email: 'newemail@example.com',
+    };
+
     userService.update.mockResolvedValue(mockUser as IUser);
 
     await userHandler.update(req as Request, res as Response);
@@ -63,6 +68,11 @@ describe('UserHandler', () => {
   });
 
   it('should return error if updating a non-existing user', async () => {
+    req.body = {
+      userNumber: mockUser.userNumber.toString(), // obrigatório e precisa ser string
+      email: 'newemail@example.com',
+    };
+
     userService.update.mockResolvedValue(null);
 
     await userHandler.update(req as Request, res as Response);
