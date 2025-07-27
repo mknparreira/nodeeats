@@ -43,49 +43,90 @@ db.createCollection('restaurants', {
   validator: {
     $jsonSchema: {
       bsonType: 'object',
-      required: ['restaurantId', 'name', 'address', 'categories', 'status'],
+      required: [
+        'restaurantNumber',
+        'name',
+        'email',
+        'phone',
+        'address',
+        'categories',
+        'openingHours',
+        'status',
+      ],
       properties: {
-        restaurantId: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
+        restaurantNumber: {
+          bsonType: 'objectId',
+          description: 'must be an ObjectId and is required',
         },
         name: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
+        email: {
+          bsonType: 'string',
+          pattern: '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$',
+          description: 'must be a valid email address',
+        },
+        phone: {
+          bsonType: 'string',
+          description: 'must be a string and is required',
+        },
+        description: {
+          bsonType: 'string',
+          description: 'optional string',
+        },
         address: {
           bsonType: 'object',
-          required: ['street', 'city', 'zipCode'],
+          required: ['street', 'city', 'state', 'zip', 'country'],
           properties: {
-            street: {
-              bsonType: 'string',
-              description: 'must be a string and is required',
-            },
-            city: {
-              bsonType: 'string',
-              description: 'must be a string and is required',
-            },
-            zipCode: {
-              bsonType: 'string',
-              description: 'must be a string and is required',
-            },
+            street: { bsonType: 'string' },
+            city: { bsonType: 'string' },
+            state: { bsonType: 'string' },
+            zip: { bsonType: 'string' },
+            country: { bsonType: 'string' },
           },
         },
         categories: {
           bsonType: 'array',
+          items: { bsonType: 'string' },
+          description: 'must be an array of strings',
+        },
+        openingHours: {
+          bsonType: 'array',
           items: {
-            bsonType: 'string',
-            description: 'must be an array of strings',
+            bsonType: 'object',
+            required: ['day', 'from', 'to'],
+            properties: {
+              day: {
+                enum: [
+                  'monday',
+                  'tuesday',
+                  'wednesday',
+                  'thursday',
+                  'friday',
+                  'saturday',
+                  'sunday',
+                ],
+              },
+              from: { bsonType: 'string' },
+              to: { bsonType: 'string' },
+            },
           },
         },
         status: {
-          enum: ['open', 'closed'],
-          description: 'must be either "open" or "closed"',
+          enum: ['opened', 'closed', 'pending'],
+          description: 'must be one of: "opened", "closed", "pending"',
         },
+        createdAt: { bsonType: 'date' },
+        updatedAt: { bsonType: ['date', 'null'] },
       },
     },
   },
 });
+
+db.restaurants.createIndex({ restaurantNumber: 1 }, { unique: true });
+db.restaurants.createIndex({ name: 1 }, { unique: true });
+db.restaurants.createIndex({ email: 1 }, { unique: true });
 
 db.createCollection('menus', {
   validator: {
