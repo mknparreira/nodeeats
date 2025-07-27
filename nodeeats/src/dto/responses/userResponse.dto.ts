@@ -1,4 +1,4 @@
-import { IUser } from '../../entites/user.entity';
+import { IUser } from '../../entities/user.entity';
 
 export class UserResponseDto {
   userNumber: string;

@@ -32,7 +32,7 @@ module.exports = {
   // Path mappings to support TypeScript aliases
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
-    '^@entites/(.*)$': '<rootDir>/src/entites/$1',
+    '^@entities/(.*)$': '<rootDir>/src/entities/$1',
     '^@repositories/(.*)$': '<rootDir>/src/repositories/$1',
     '^@mocks/(.*)$': '<rootDir>/tests/mocks/$1',
     '^@services/(.*)$': '<rootDir>/src/services/$1',

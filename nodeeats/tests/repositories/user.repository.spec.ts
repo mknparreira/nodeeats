@@ -1,9 +1,9 @@
 import 'reflect-metadata';
-import { UserEntity } from '@entites/user.entity';
 import { mockUser, mockUserList } from '@mocks/user.mock';
 import { UserRepository } from '@repositories/user.repository';
+import { UserEntity } from 'src/entities/user.entity';
 
-jest.mock('@entites/user.entity');
+jest.mock('@entities/user.entity');
 
 describe('UserRepository', () => {
   let userRepository: UserRepository;

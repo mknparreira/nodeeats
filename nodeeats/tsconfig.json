@@ -24,7 +24,7 @@
     "noEmitOnError": true, // OBS: It must be changed for true
     "paths": {
       "@services/*": ["src/services/*"], // Alias for service modules
-      "@entites/*": ["src/entites/*"], // Alias for model modules
+      "@entities/*": ["src/entities/*"], // Alias for model modules
       "@providers/*": ["src/providers/*"], // Alias for providers modules
       "@repositories/*": ["src/repositories/*"], // Alias for repositories modules
       "@handlers/*": ["src/handlers/*"], // Alias for handlers modules

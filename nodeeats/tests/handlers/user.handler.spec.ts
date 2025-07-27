@@ -7,7 +7,7 @@ import { UserRepository } from '@repositories/user.repository';
 import { UserService } from '@services/user.service';
 
 import { UserResponseDto } from '../../src/dto/responses/userResponse.dto';
-import { IUser } from '../../src/entites/user.entity';
+import { IUser } from '../entities/user.entity';
 import {
   CreateUserValidate,
   UpdateUserValidate,

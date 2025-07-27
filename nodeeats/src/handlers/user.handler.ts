@@ -6,7 +6,7 @@ import { UserService } from '@services/user.service';
 import { CreateUserRequestDto } from '../dto/requests/createUserRequest.dto';
 import { UpdateUserRequestDto } from '../dto/requests/updateUserRequest.dto';
 import { UserResponseDto } from '../dto/responses/userResponse.dto';
-import { IUser } from '../entites/user.entity';
+import { IUser } from '../entities/user.entity';
 import { UserFilter } from '../types/userFilter.type';
 import { handleRequest } from '../utils/handleRequest.util';
 import { pagination } from '../utils/pagination.util';

@@ -3,7 +3,7 @@ import { mockUser, mockUserList } from '@mocks/user.mock';
 import { UserRepository } from '@repositories/user.repository';
 import { UserService } from '@services/user.service';
 
-import { IUser } from '../../src/entites/user.entity';
+import { IUser } from '../entities/user.entity';
 
 jest.mock('@repositories/user.repository');
 

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { injectable } from 'tsyringe';
 
-import { IUser, UserEntity } from '@entites/user.entity';
+import { IUser, UserEntity } from 'src/entities/user.entity';
 
 import { UserFilter } from '../types/userFilter.type';
 

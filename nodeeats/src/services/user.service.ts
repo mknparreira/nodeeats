@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import { IUser } from '@entites/user.entity';
+import { IUser } from 'src/entities/user.entity';
 import { UserRepository } from '@repositories/user.repository';
 
 import { UserFilter } from '../types/userFilter.type';
