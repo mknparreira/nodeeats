@@ -1,7 +1,9 @@
-import { RestaurantRepository } from '@repositories/restaurant.repository';
-import { IRestaurant } from 'src/entities/restaurant.entity';
 import { injectable, inject } from 'tsyringe';
 
+import { RestaurantRepository } from '@repositories/restaurant.repository';
+import { IRestaurant } from 'src/entities/restaurant.entity';
+
+import { eventEmitter } from '../providers/eventEmitter.provider';
 import { RestaurantFilter } from '../types/restaurantFilter.type';
 
 @injectable()
@@ -12,12 +14,16 @@ export class RestaurantService {
   ) {}
 
   async create(data: Partial<IRestaurant>): Promise<IRestaurant> {
-    return await this.restaurantRepository.create(data);
+    const restaurant = await this.restaurantRepository.create(data);
+    eventEmitter.emit('restaurant.created', restaurant);
+    return restaurant;
   }
 
   async update(data: Partial<IRestaurant>): Promise<IRestaurant | null> {
     data.updatedAt = new Date();
-    return await this.restaurantRepository.edit(data);
+    const restaurant = await this.restaurantRepository.edit(data);
+    eventEmitter.emit('restaurant.updated', data);
+    return restaurant;
   }
 
   async getRestaurantByRestaurantNumber(
