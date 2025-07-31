@@ -19,17 +19,21 @@
   "description": "My Node.js application that demonstrates an architecture for building a complete production API with Node.JS, TypeScript, Express, MongoDB and RabbitMQ",
   "dependencies": {
     "dotenv": "^17.2.1",
+    "eventemitter3": "^5.0.1",
     "express": "^5.1.0",
     "http-status-codes": "^2.3.0",
     "mongoose": "^8.16.5",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.10.0",
+    "winston": "^3.17.0",
     "zod": "3.22.4"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/jest": "^30.0.0",
+    "@types/node": "^24.1.0",
     "@types/supertest": "^6.0.3",
+    "@types/winston": "^2.4.4",
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
     "eslint": "^9.32.0",

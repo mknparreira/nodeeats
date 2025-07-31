@@ -8,6 +8,9 @@ import { errorMiddleware } from '@middlewares/errorHandler.middleware';
 import { DatabaseProvider } from '@providers/database.provider';
 import { router } from '@routes/routes';
 
+// Importing event subscribers
+import './events/subscribers/index.subscriber';
+
 const app = express();
 app.use(express.json());
 
