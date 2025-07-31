@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import { eventEmitter } from './eventEmitter.provider';
+
 export class DatabaseProvider {
   private static DATABASE_URL = process.env.DATABASE_URL;
 
@@ -10,9 +12,9 @@ export class DatabaseProvider {
         throw new Error('DATABASE_URL is not defined');
       }
       await mongoose.connect(this.DATABASE_URL);
-      console.log('Connected to MongoDB');
+      eventEmitter.emit('database.connected', 'MongoDB connected successfully');
     } catch (error) {
-      console.error('Error connecting to MongoDB:', error);
+      eventEmitter.emit('database.error', error);
       process.exit(1);
     }
   }
@@ -20,9 +22,9 @@ export class DatabaseProvider {
   static async disconnect(): Promise<void> {
     try {
       await mongoose.disconnect();
-      console.log('Disconnected from MongoDB');
+      eventEmitter.emit('database.disconnected', 'Disconnected from MongoDB');
     } catch (error) {
-      console.error('Error disconnecting from MongoDB:', error);
+      eventEmitter.emit('database.error', error);
     }
   }
 }

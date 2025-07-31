@@ -6,7 +6,12 @@ dotenv.config();
 
 import { errorMiddleware } from '@middlewares/errorHandler.middleware';
 import { DatabaseProvider } from '@providers/database.provider';
+import { logger } from '@providers/logger.provider';
 import { router } from '@routes/routes';
+
+import { registerAllListeners } from './events/register.listener';
+
+registerAllListeners();
 
 const app = express();
 app.use(express.json());
@@ -18,14 +23,14 @@ app.use(errorMiddleware);
   await DatabaseProvider.connect();
   const PORT = process.env.HOST_PORT;
   app.listen(PORT, () => {
-    console.log(`Server started on http://localhost:${PORT}`);
+    logger.info(`Server started on http://localhost:${PORT}`);
   });
 })();
 
 process.on('SIGINT', async () => {
-  console.log('Closing database connection...');
+  logger.warn('Closing database connection...');
   await DatabaseProvider.disconnect();
-  console.log('Server stopped.');
+  logger.warn('Server stopped.');
   process.exit(0);
 });
 
