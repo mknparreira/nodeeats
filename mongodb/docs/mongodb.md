@@ -26,6 +26,19 @@ Maintains information about restaurants, including their profiles, contact detai
 - categories: List of categories the restaurant belongs to.
 - status: Current status (e.g., open or closed).
 
+## categories
+
+Defines categories used to organize restaurants and menu items.
+
+**Key Fields**:
+
+- categoryNumber: Unique identifier for the category (ObjectId).
+- name: Name of the category (must be unique).
+- slug: URL-friendly version of the category name (must be unique).
+- description: (Optional) Textual description of the category.
+- createdAt: Timestamp for when the category was created.
+- updatedAt: Timestamp for the last time the category was updated (nullable).
+
 ## menus
 
 Stores the menu items for each restaurant, including details such as pricing and availability.
@@ -36,15 +49,6 @@ Stores the menu items for each restaurant, including details such as pricing and
 - restaurantId: Reference to the associated restaurant.
 - name: Name of the menu item.
 - price: Price of the item.
-
-## categories
-
-Defines categories used to organize restaurants and menu items.
-
-**Key Fields**:
-
-- categoryId: Unique identifier for the category.
-- name: Category name.
 
 ## orders
 
