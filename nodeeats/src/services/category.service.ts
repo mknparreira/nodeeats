@@ -1,10 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
+import { CategoryFilter } from '@customTypes/categoryFilter.type';
 import { ICategory } from '@entities/category.entity';
+import { eventEmitter } from '@providers/eventEmitter.provider';
 import { CategoryRepository } from '@repositories/category.repository';
-
-import { eventEmitter } from '../providers/eventEmitter.provider';
-import { CategoryFilter } from '../types/categoryFilter.type';
 
 @injectable()
 export class CategoryService {

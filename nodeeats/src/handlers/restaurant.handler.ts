@@ -1,15 +1,14 @@
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
+import { RestaurantFilter } from '@customTypes/restaurantFilter.type';
+import { CreateRestaurantRequestDto } from '@dto/requests/createRestaurantRequest.dto';
+import { UpdateRestaurantRequestDto } from '@dto/requests/updateRestaurantRequest.dto';
+import { RestaurantResponseDto } from '@dto/responses/restaurantResponse.dto';
 import { IRestaurant } from '@entities/restaurant.entity';
 import { RestaurantService } from '@services/restaurant.service';
-
-import { CreateRestaurantRequestDto } from '../dto/requests/createRestaurantRequest.dto';
-import { UpdateRestaurantRequestDto } from '../dto/requests/updateRestaurantRequest.dto';
-import { RestaurantResponseDto } from '../dto/responses/restaurantResponse.dto';
-import { RestaurantFilter } from '../types/restaurantFilter.type';
-import { handleRequest } from '../utils/handleRequest.util';
-import { pagination } from '../utils/pagination.util';
+import { handleRequest } from '@utils/handleRequest.util';
+import { pagination } from '@utils/pagination.util';
 
 @injectable()
 export class RestaurantHandler {

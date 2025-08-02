@@ -1,10 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
+import { UserFilter } from '@customTypes/userFilter.type';
+import { IUser } from '@entities/user.entity';
+import { eventEmitter } from '@providers/eventEmitter.provider';
 import { UserRepository } from '@repositories/user.repository';
-import { IUser } from 'src/entities/user.entity';
-
-import { eventEmitter } from '../providers/eventEmitter.provider';
-import { UserFilter } from '../types/userFilter.type';
 
 @injectable()
 export class UserService {

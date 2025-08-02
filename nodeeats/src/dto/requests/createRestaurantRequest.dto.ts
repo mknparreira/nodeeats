@@ -1,6 +1,5 @@
 import { IRestaurant } from '@entities/restaurant.entity';
-
-import { CreateRestaurantValidate } from '../../validates/restaurant.validate';
+import { CreateRestaurantValidate } from '@validates/restaurant.validate';
 
 export class CreateRestaurantRequestDto {
   name: string;

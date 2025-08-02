@@ -4,12 +4,11 @@ import express from 'express';
 
 dotenv.config();
 
+import { registerAllListeners } from '@events/register.listener';
 import { errorMiddleware } from '@middlewares/errorHandler.middleware';
 import { DatabaseProvider } from '@providers/database.provider';
 import { logger } from '@providers/logger.provider';
 import { router } from '@routes/routes';
-
-import { registerAllListeners } from './events/register.listener';
 
 registerAllListeners();
 

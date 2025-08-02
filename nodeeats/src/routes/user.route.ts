@@ -3,11 +3,10 @@ import { container } from 'tsyringe';
 
 import { UserHandler } from '@handlers/user.handler';
 import { validate } from '@middlewares/validateRequest.middleware';
-
 import {
   CreateUserValidate,
   UpdateUserValidate,
-} from '../validates/user.validate';
+} from '@validates/user.validate';
 
 const userRouter = Router();
 const userHandler = container.resolve(UserHandler);

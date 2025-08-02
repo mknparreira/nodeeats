@@ -3,11 +3,10 @@ import { container } from 'tsyringe';
 
 import { CategoryHandler } from '@handlers/category.handler';
 import { validate } from '@middlewares/validateRequest.middleware';
-
 import {
   CreateCategoryValidate,
   UpdateCategoryValidate,
-} from '../validates/category.validate';
+} from '@validates/category.validate';
 
 const categoryRouter = Router();
 const categoryHandler = container.resolve(CategoryHandler);

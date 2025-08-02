@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
 import { injectable } from 'tsyringe';
 
-import { IUser, UserEntity } from 'src/entities/user.entity';
-
-import { UserFilter } from '../types/userFilter.type';
+import { UserFilter } from '@customTypes/userFilter.type';
+import { IUser, UserEntity } from '@entities/user.entity';
 
 @injectable()
 export class UserRepository {

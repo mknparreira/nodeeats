@@ -1,8 +1,7 @@
 import mongoose from 'mongoose';
 
 import { IRestaurant } from '@entities/restaurant.entity';
-
-import { UpdateRestaurantValidate } from '../../validates/restaurant.validate';
+import { UpdateRestaurantValidate } from '@validates/restaurant.validate';
 
 export class UpdateRestaurantRequestDto {
   restaurantNumber: mongoose.Types.ObjectId;

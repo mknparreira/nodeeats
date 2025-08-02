@@ -1,6 +1,8 @@
 import { Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
+import { logger } from '@providers/logger.provider';
+
 async function handleRequest<T>(
   res: Response,
   handle: () => Promise<T>,
@@ -9,7 +11,7 @@ async function handleRequest<T>(
     const response = await handle();
     return res.status(StatusCodes.OK).json({ data: response });
   } catch (error) {
-    console.error('Error handling request:', error);
+    logger.error('Error handling request:', error);
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ error: (error as Error).message });

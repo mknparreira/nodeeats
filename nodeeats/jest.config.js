@@ -35,12 +35,22 @@ module.exports = {
   // Path mappings to support TypeScript aliases
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
+    '^@dto/(.*)$': '<rootDir>/src/dto/$1',
     '^@entities/(.*)$': '<rootDir>/src/entities/$1',
-    '^@repositories/(.*)$': '<rootDir>/src/repositories/$1',
-    '^@mocks/(.*)$': '<rootDir>/tests/mocks/$1',
-    '^@services/(.*)$': '<rootDir>/src/services/$1',
+    '^@events/(.*)$': '<rootDir>/src/events/$1',
     '^@handlers/(.*)$': '<rootDir>/src/handlers/$1',
+    '^@listeners/(.*)$': '<rootDir>/src/events/listeners/$1',
+    '^@middlewares/(.*)$': '<rootDir>/src/middlewares/$1',
+    '^@mocks/(.*)$': '<rootDir>/tests/mocks/$1',
+    '^@providers/(.*)$': '<rootDir>/src/providers/$1',
+    '^@routes/(.*)$': '<rootDir>/src/routes/$1',
+    '^@requests/(.*)$': '<rootDir>/src/requests/$1',
+    '^@responses/(.*)$': '<rootDir>/src/responses/$1',
+    '^@repositories/(.*)$': '<rootDir>/src/repositories/$1',
+    '^@services/(.*)$': '<rootDir>/src/services/$1',
+    '^@customTypes/(.*)$': '<rootDir>/src/types/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
+    '^@validates/(.*)$': '<rootDir>/src/validates/$1',
   },
 
   // Configures Jest to automatically clear mocks before each test

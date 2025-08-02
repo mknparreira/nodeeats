@@ -2,17 +2,16 @@ import 'reflect-metadata';
 
 import { Request, Response } from 'express';
 
+import { RestaurantResponseDto } from '@dto/responses/restaurantResponse.dto';
+import { IRestaurant } from '@entities/restaurant.entity';
 import { RestaurantHandler } from '@handlers/restaurant.handler';
 import { mockRestaurant, mockRestaurantList } from '@mocks/restaurant.mock';
 import { RestaurantRepository } from '@repositories/restaurant.repository';
 import { RestaurantService } from '@services/restaurant.service';
-
-import { RestaurantResponseDto } from '../../src/dto/responses/restaurantResponse.dto';
 import {
   CreateRestaurantValidate,
   UpdateRestaurantValidate,
-} from '../../src/validates/restaurant.validate';
-import { IRestaurant } from '../entities/restaurant.entity';
+} from '@validates/restaurant.validate';
 
 jest.mock('@services/restaurant.service');
 

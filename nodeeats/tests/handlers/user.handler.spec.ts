@@ -1,17 +1,16 @@
 import 'reflect-metadata';
 import { Request, Response } from 'express';
 
+import { UserResponseDto } from '@dto/responses/userResponse.dto';
+import { IUser } from '@entities/user.entity';
 import { UserHandler } from '@handlers/user.handler';
 import { mockUser, mockUserList } from '@mocks/user.mock';
 import { UserRepository } from '@repositories/user.repository';
 import { UserService } from '@services/user.service';
-
-import { UserResponseDto } from '../../src/dto/responses/userResponse.dto';
-import { IUser } from '../entities/user.entity';
 import {
   CreateUserValidate,
   UpdateUserValidate,
-} from '../../src/validates/user.validate';
+} from '@validates/user.validate';
 
 jest.mock('@services/user.service');
 

@@ -3,11 +3,10 @@ import { container } from 'tsyringe';
 
 import { RestaurantHandler } from '@handlers/restaurant.handler';
 import { validate } from '@middlewares/validateRequest.middleware';
-
 import {
   CreateRestaurantValidate,
   UpdateRestaurantValidate,
-} from '../validates/restaurant.validate';
+} from '@validates/restaurant.validate';
 
 const restaurantRouter = Router();
 const restaurantHandler = container.resolve(RestaurantHandler);
