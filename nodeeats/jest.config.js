@@ -29,6 +29,9 @@ module.exports = {
   // Sets the environment where tests will run (Node.js)
   testEnvironment: 'node',
 
+  // Path to setup file for additional configurations
+  setupFilesAfterEnv: ['<rootDir>/tests/jest.setup.ts'],
+
   // Path mappings to support TypeScript aliases
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',

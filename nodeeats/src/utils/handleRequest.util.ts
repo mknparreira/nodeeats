@@ -9,6 +9,7 @@ async function handleRequest<T>(
     const response = await handle();
     return res.status(StatusCodes.OK).json({ data: response });
   } catch (error) {
+    console.error('Error handling request:', error);
     return res
       .status(StatusCodes.BAD_REQUEST)
       .json({ error: (error as Error).message });
