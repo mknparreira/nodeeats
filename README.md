@@ -1,14 +1,15 @@
 # Node Eats
 
-The Node Eats is a project for education purposes developed by myself and aims to demonstrate practical applications of Node.JS using Express in order to building a robust and scalable food delivery solution while offering hands-on experience with modern software practices and technologies.
+Node Eats is an educational project I developed to demostrate how I apply real-world Node.js practices using Express.
 
-This project aims to provide a practical learning experience by covering essential components of a food delivery system, including:
+It focuses on building a robust and scalable food delivery platform while applying modern software architecture and engineering principles.
 
-- **Infrastructure Setup**: Implementing an API Gateway with Kong, using RabbitMQ for messaging, Redis for caching, Kubernetes for container orchestration, and MongoDB for data storage.
-- **Core Resources**: Developing several resources such as <HERE>.
+The goal is to provide a learning experience by applying all the concepts I have been learning to build modern and scalable application systems, including:
+
+- **Infrastructure Setup**: Implementing an API Gateway with Kong, using RabbitMQ for messaging, Kubernetes for container orchestration, and MongoDB for data storage.
+- **Core Resources**: Developing several core modules such as users, restaurants, orders, payments, notifications, and more.
 - **API Enhancements**: Focusing on security, resilience, and scalability improvements.
-- **Monitoring and Documentation**: Implementing tracing, monitoring and documenting the API with OpenAPI specification (Swagger).
-- **Future features**: Planning for additional features and improvements.
+- **Monitoring and Documentation**: Implementing tracing, monitoring and documenting the API with the OpenAPI specification (Swagger).
 
 ## Architecture
 
@@ -117,72 +118,52 @@ To override these defaults, you can set the environment variables in your .env f
 
 **First, why did I choose Express with TypeScript over NestJS?**
 
-I chose Express with TypeScript because it is very usual, especially in Serverless environments such as AWS Serveless, for companies to use Node.JS with just Express and TypeScript. This approach allows for more flexibility and a simpler structure, which is often preferred in serverless architectures where lightweight and efficient code is key.
+I chose Express with TypeScript because it’s commonly used in serverless environments — especially on platforms like AWS Lambda — where many companies adopt a simpler and more lightweight setup.
+This combination offers greater flexibility and control over the structure, which aligns well with the needs of serverless architectures that prioritize minimal overhead and fast execution.
 
-## Packages Installed
-
-| Package                           | Description                                                                                                    |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| Express                           | Fast, minimal web framework for building APIs and web applications in Node.js.                                 |
-| Typescript                        | Typed superset of JavaScript that compiles to plain JavaScript, improving code safety and maintainability.     |
-| Jest                              | JavaScript testing framework for unit and integration tests with built-in mocking capabilities.                |
-| Tsnode                            | Executes TypeScript code directly in Node.js, allowing TypeScript files to run without precompiling.           |
-| Nodemon                           | Automatically restarts the Node.js application when file changes are detected, improving development workflow. |
-| Prettier                          | Opinionated code formatter that ensures consistent style across a codebase.                                    |
-| Eslint                            | Linter for JavaScript and TypeScript, enforcing coding standards and detecting issues in code.                 |
-| Eslint-config-prettier            | Disables ESLint rules that conflict with Prettier, allowing both tools to work together seamlessly.            |
-| Eslint-plugin-prettier            | Integrates Prettier into ESLint, so code formatting issues are reported as ESLint errors.                      |
-| Eslint-plugin-import              | Enforces best practices for managing imports, including sorting and resolving module paths.                    |
-| Ts Jest                           | A Jest transformer that enables running TypeScript tests within Jest.                                          |
-| Typescript-eslint                 | ESLint plugin and parser for TypeScript, allowing TypeScript-specific linting rules.                           |
-| Supertest                         | HTTP assertion library for testing APIs, used to simulate requests and validate responses.                     |
-| Dotenv                            | Loads environment variables from a .env file.                                                                  |
-| Tsconfig-paths                    | Enables TypeScript path aliases resolution at runtime.                                                         |
-| Eslint-import-resolver-typescript | Helps ESLint resolve TypeScript paths correctly.                                                               |
-| Mongoose                          | ODM (Object Data Modeling) library for MongoDB, providing schema validation and query building.                |
-| Reflect-metadata                  | Required for decorators in TypeScript, especially for dependency injection with tsyringe.                      |
-| Tsyringe                          | Lightweight dependency injection container for TypeScript.                                                     |
-| Http-status-codes                 | Provides named constants for HTTP status codes, improving code readability                                     |
+For more details about packages installed, check the [Packages installed](docs/packages.md).
 
 # 5. Resources
 
 All resources, including repository, service, module, model, handlers and so on.
 
-| Resource     | Description                                                                                          | Status |
-| ------------ | ---------------------------------------------------------------------------------------------------- | ------ |
-| User         | Manages user registration, editing, and viewing information such as name, email, and authentication. | done   |
-| Restaurant   | Manages restaurant details, menu offerings, opening hours, and availability status.                  | done   |
-| Menu         | Handles menu items for restaurants, including categories and product descriptions                    |        |
-| Category     | Organizes and classifies restaurants and menu items into categories.                                 |        |
-| Order        | Handles the creation, updating, and tracking of food delivery orders, including order status.        |        |
-| Payment      | Processes payments and manages payment methods.                                                      |        |
-| Delivery     | Coordinates delivery logistics, including assigning couriers and real-time tracking.                 |        |
-| Review       | Enables users to leave feedback and ratings for restaurants and delivery experiences.                |        |
-| Notification | Sends order updates, promotions, and other alerts to users.                                          |        |
+| Resource     | Description                                                                                          | Status  |
+| ------------ | ---------------------------------------------------------------------------------------------------- | ------- |
+| User         | Manages user registration, editing, and viewing information such as name, email, and authentication. | done    |
+| Restaurant   | Manages restaurant details, menu offerings, opening hours, and availability status.                  | done    |
+| Category     | Organizes and classifies restaurants and menu items into categories.                                 | ongoing |
+| Menu         | Handles menu items for restaurants, including categories and product descriptions                    |         |
+| Order        | Handles the creation, updating, and tracking of food delivery orders, including order status.        |         |
+| Payment      | Processes payments and manages payment methods.                                                      |         |
+| Delivery     | Coordinates delivery logistics, including assigning couriers and real-time tracking.                 |         |
+| Review       | Enables users to leave feedback and ratings for restaurants and delivery experiences.                |         |
+| Notification | Sends order updates, promotions, and other alerts to users.                                          |         |
 
 # 6. Enhance API Security
 
-| Package | Description                                                                      |
-| ------- | -------------------------------------------------------------------------------- |
-| Helmet  | API protection against vulnerabilities in order to inject security HTTP Headers. |
-| CORS    | Enables CORS support to allow requests for another origins                       |
+| Package                | Description                                                                      |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| CORS                   | Enables CORS support to allow requests for another origins.                      |
+| Express Mongo Sanitize | Prevents MongoDB Operator Injection by sanitizing incoming data.                 |
+| Helmet                 | API protection against vulnerabilities in order to inject security HTTP Headers. |
+| XSS-Clean              | Protects against Cross-site Scripting (XSS) attacks by cleaning input.           |
+| HPP                    | Prevents HTTP Parameter Pollution attacks.                                       |
 
 # 7. Setup Kubernetes
 
-TBD
+This section describes how to containerize and orchestrate the services of Node Eats using Kubernetes, simulating a production-like environment commonly adopted in scalable, cloud-native architectures.
 
 # 8. Enhance API Resilience
 
 In this phase, I will implement some strategies to improve the resilience of APIs, ensuring they can handle with failures and recover effectively. I will adopting the following strategies and tools:
 
 - Implement Circuit Breaker using Circuit Breaker package in Kong API Gateway.
-- Implement Circuit Breaker.
 - Implement retries e backoff.
 - Configure timeout into the entire services in Kong API Gateway
 - Implement Fallback Pattern.
 - Implement Bulkheads.
-- Implement Active Health Checks in Kong API Gateway
-- Implement Failover strategies with Kubernetes (replicaSet)
+- Implement Active Health Checks in Kong API Gateway (liveness prob)
+- Implement Failover strategies with Kubernetes (using deployment with replicaSets, HPA)
 
 # 9. Enhance API Scalability
 
