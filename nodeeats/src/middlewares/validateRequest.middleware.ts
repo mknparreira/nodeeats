@@ -14,6 +14,6 @@ export const validate =
       });
     }
 
-    req.body = result.data; // dados validados e limpos
+    req.body = result.data;
     next();
   };

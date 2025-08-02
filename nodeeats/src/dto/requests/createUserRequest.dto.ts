@@ -1,5 +1,5 @@
-import { IUser } from '../../entities/user.entity';
-import { CreateUserValidate } from '../../validates/user.validate';
+import { IUser } from '@entities/user.entity';
+import { CreateUserValidate } from '@validates/user.validate';
 
 export class CreateUserRequestDto {
   name: string;

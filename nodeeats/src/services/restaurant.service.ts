@@ -1,10 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 
+import { RestaurantFilter } from '@customTypes/restaurantFilter.type';
+import { IRestaurant } from '@entities/restaurant.entity';
+import { eventEmitter } from '@providers/eventEmitter.provider';
 import { RestaurantRepository } from '@repositories/restaurant.repository';
-import { IRestaurant } from 'src/entities/restaurant.entity';
-
-import { eventEmitter } from '../providers/eventEmitter.provider';
-import { RestaurantFilter } from '../types/restaurantFilter.type';
 
 @injectable()
 export class RestaurantService {

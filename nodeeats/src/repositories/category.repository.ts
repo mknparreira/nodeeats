@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
 import { injectable } from 'tsyringe';
 
+import { CategoryFilter } from '@customTypes/categoryFilter.type';
 import { ICategory, CategoryEntity } from '@entities/category.entity';
-
-import { CategoryFilter } from '../types/categoryFilter.type';
 
 @injectable()
 export class CategoryRepository {

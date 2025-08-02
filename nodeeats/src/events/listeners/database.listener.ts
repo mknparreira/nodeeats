@@ -1,5 +1,5 @@
-import { eventEmitter } from '../../providers/eventEmitter.provider';
-import { logger } from '../../providers/logger.provider';
+import { eventEmitter } from '@providers/eventEmitter.provider';
+import { logger } from '@providers/logger.provider';
 export function registerDatabaseListeners() {
   eventEmitter.on('database.connected', payload => {
     logger.info(`[database.connected] ${JSON.stringify(payload)}`);

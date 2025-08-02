@@ -1,15 +1,14 @@
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
+import { CategoryFilter } from '@customTypes/categoryFilter.type';
+import { CreateCategoryRequestDto } from '@dto/requests/createCategoryRequest.dto';
+import { UpdateCategoryRequestDto } from '@dto/requests/updateCategoryRequest.dto';
+import { CategoryResponseDto } from '@dto/responses/categoryResponse.dto';
 import { ICategory } from '@entities/category.entity';
 import { CategoryService } from '@services/category.service';
-
-import { CreateCategoryRequestDto } from '../dto/requests/createCategoryRequest.dto';
-import { UpdateCategoryRequestDto } from '../dto/requests/updateCategoryRequest.dto';
-import { CategoryResponseDto } from '../dto/responses/categoryResponse.dto';
-import { CategoryFilter } from '../types/categoryFilter.type';
-import { handleRequest } from '../utils/handleRequest.util';
-import { pagination } from '../utils/pagination.util';
+import { handleRequest } from '@utils/handleRequest.util';
+import { pagination } from '@utils/pagination.util';
 
 @injectable()
 export class CategoryHandler {

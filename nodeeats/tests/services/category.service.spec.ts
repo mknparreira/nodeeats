@@ -1,7 +1,6 @@
 import 'reflect-metadata';
-import { mockCategory, mockCategoryList } from '@mocks/category.mock';
-
 import { ICategory } from '@entities/category.entity';
+import { mockCategory, mockCategoryList } from '@mocks/category.mock';
 import { CategoryRepository } from '@repositories/category.repository';
 import { CategoryService } from '@services/category.service';
 

@@ -2,17 +2,16 @@ import 'reflect-metadata';
 
 import { Request, Response } from 'express';
 
+import { CategoryResponseDto } from '@dto/responses/categoryResponse.dto';
 import { ICategory } from '@entities/category.entity';
 import { CategoryHandler } from '@handlers/category.handler';
 import { mockCategory, mockCategoryList } from '@mocks/category.mock';
 import { CategoryRepository } from '@repositories/category.repository';
 import { CategoryService } from '@services/category.service';
-
-import { CategoryResponseDto } from '../../src/dto/responses/categoryResponse.dto';
 import {
   CreateCategoryValidate,
   UpdateCategoryValidate,
-} from '../../src/validates/category.validate';
+} from '@validates/category.validate';
 
 jest.mock('@services/category.service');
 

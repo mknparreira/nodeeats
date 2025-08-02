@@ -1,9 +1,8 @@
 import 'reflect-metadata';
+import { IUser } from '@entities/user.entity';
 import { mockUser, mockUserList } from '@mocks/user.mock';
 import { UserRepository } from '@repositories/user.repository';
 import { UserService } from '@services/user.service';
-
-import { IUser } from '../entities/user.entity';
 
 jest.mock('@repositories/user.repository');
 

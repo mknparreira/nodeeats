@@ -23,18 +23,26 @@
     "noFallthroughCasesInSwitch": true, // Ensure `switch` statements always include `break` to prevent unintended fallthroughs
     "noEmitOnError": true, // OBS: It must be changed for true
     "paths": {
-      "@services/*": ["src/services/*"], // Alias for service modules
-      "@entities/*": ["src/entities/*"], // Alias for model modules
-      "@providers/*": ["src/providers/*"], // Alias for providers modules
-      "@repositories/*": ["src/repositories/*"], // Alias for repositories modules
-      "@handlers/*": ["src/handlers/*"], // Alias for handlers modules
-      "@routes/*": ["src/routes/*"], // Alias for routes modules
-      "@middlewares/*": ["src/middlewares/*"], // Alias for middleware modules
-      "@utils/*": ["src/utils/*"], // Alias for utility modules
-      "@tests/*": ["tests/*"], // Alias for test modules
-      "@mocks/*": ["tests/mocks/*"] // Alias for test modules
+      // Define module path aliases for cleaner imports
+      "@customTypes/*": ["src/types/*"],
+      "@dto/*": ["src/dto/*"],
+      "@entities/*": ["src/entities/*"],
+      "@events/*": ["src/events/*"],
+      "@handlers/*": ["src/handlers/*"],
+      "@listeners/*": ["src/events/listeners/*"],
+      "@mocks/*": ["tests/mocks/*"],
+      "@middlewares/*": ["src/middlewares/*"],
+      "@providers/*": ["src/providers/*"],
+      "@routes/*": ["src/routes/*"],
+      "@requests/*": ["src/dto/requests/*"],
+      "@responses/*": ["src/dto/responses/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@services/*": ["src/services/*"],
+      "@tests/*": ["tests/*"],
+      "@utils/*": ["src/utils/*"],
+      "@validates/*": ["src/validates/*"]
     }
   },
   "include": ["src/**/*", "tests/**/*"], // Include all TypeScript files inside src and tests folder
-  "exclude": ["dist"] // Exclude "dist" folder from TypeScript compilation
+  "exclude": ["dist", "node_modules"] // Exclude "dist" folder from TypeScript compilation
 }

@@ -1,9 +1,8 @@
 import mongoose from 'mongoose';
 import { injectable } from 'tsyringe';
 
+import { RestaurantFilter } from '@customTypes/restaurantFilter.type';
 import { IRestaurant, RestaurantEntity } from '@entities/restaurant.entity';
-
-import { RestaurantFilter } from '../types/restaurantFilter.type';
 
 @injectable()
 export class RestaurantRepository {

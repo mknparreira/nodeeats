@@ -1,8 +1,7 @@
 import 'reflect-metadata';
+import { CategoryEntity } from '@entities/category.entity';
 import { mockCategory, mockCategoryList } from '@mocks/category.mock';
-
 import { CategoryRepository } from '@repositories/category.repository';
-import { CategoryEntity } from 'src/entities/category.entity';
 
 jest.mock('@entities/category.entity');
 

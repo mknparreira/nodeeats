@@ -1,5 +1,5 @@
-import { eventEmitter } from '../../providers/eventEmitter.provider';
-import { logger } from '../../providers/logger.provider';
+import { eventEmitter } from '@providers/eventEmitter.provider';
+import { logger } from '@providers/logger.provider';
 export function registerRestaurantListeners() {
   eventEmitter.on('restaurant.created', payload => {
     logger.info(`[restaurant.created] ${JSON.stringify(payload)}`);

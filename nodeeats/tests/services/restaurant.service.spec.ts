@@ -1,9 +1,8 @@
 import 'reflect-metadata';
+import { IRestaurant } from '@entities/restaurant.entity';
 import { mockRestaurant, mockRestaurantList } from '@mocks/restaurant.mock';
 import { RestaurantRepository } from '@repositories/restaurant.repository';
 import { RestaurantService } from '@services/restaurant.service';
-
-import { IRestaurant } from '../entities/restaurant.entity';
 
 jest.mock('@repositories/restaurant.repository');
 

@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-import { IUser } from '../../entities/user.entity';
-import { UpdateUserValidate } from '../../validates/user.validate';
+import { IUser } from '@entities/user.entity';
+import { UpdateUserValidate } from '@validates/user.validate';
 
 export class UpdateUserRequestDto {
   userNumber: mongoose.Types.ObjectId;

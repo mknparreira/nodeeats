@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-import { eventEmitter } from './eventEmitter.provider';
+import { eventEmitter } from '@providers/eventEmitter.provider';
 
 export class DatabaseProvider {
   private static DATABASE_URL = process.env.DATABASE_URL;

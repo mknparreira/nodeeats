@@ -1,6 +1,5 @@
 import { ICategory } from '@entities/category.entity';
-
-import { CreateCategoryValidate } from '../../validates/category.validate';
+import { CreateCategoryValidate } from '@validates/category.validate';
 
 export class CreateCategoryRequestDto {
   name: string;

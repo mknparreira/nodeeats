@@ -1,15 +1,14 @@
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
+import { UserFilter } from '@customTypes/userFilter.type';
+import { CreateUserRequestDto } from '@dto/requests/createUserRequest.dto';
+import { UpdateUserRequestDto } from '@dto/requests/updateUserRequest.dto';
+import { UserResponseDto } from '@dto/responses/userResponse.dto';
+import { IUser } from '@entities/user.entity';
 import { UserService } from '@services/user.service';
-
-import { CreateUserRequestDto } from '../dto/requests/createUserRequest.dto';
-import { UpdateUserRequestDto } from '../dto/requests/updateUserRequest.dto';
-import { UserResponseDto } from '../dto/responses/userResponse.dto';
-import { IUser } from '../entities/user.entity';
-import { UserFilter } from '../types/userFilter.type';
-import { handleRequest } from '../utils/handleRequest.util';
-import { pagination } from '../utils/pagination.util';
+import { handleRequest } from '@utils/handleRequest.util';
+import { pagination } from '@utils/pagination.util';
 
 @injectable()
 export class UserHandler {
