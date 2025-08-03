@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
+import { NotFoundError } from '@customErrors/notFound.error';
 import { CategoryFilter } from '@customTypes/categoryFilter.type';
 import { CreateCategoryRequestDto } from '@dto/requests/createCategoryRequest.dto';
 import { UpdateCategoryRequestDto } from '@dto/requests/updateCategoryRequest.dto';
@@ -29,7 +30,7 @@ export class CategoryHandler {
     return handleRequest(res, async () => {
       const updateDto = new UpdateCategoryRequestDto(req.body);
       const category = await this.categoryService.update(updateDto);
-      if (!category) throw new Error('Category not found');
+      if (!category) throw new NotFoundError('Category not found');
       return new CategoryResponseDto(category);
     });
   }
@@ -39,7 +40,7 @@ export class CategoryHandler {
       const category = await this.categoryService.getCategoryByCategoryNumber(
         req.params.categoryNumber,
       );
-      if (!category) throw new Error('Category not found');
+      if (!category) throw new NotFoundError('Category not found');
       return new CategoryResponseDto(category);
     });
   }

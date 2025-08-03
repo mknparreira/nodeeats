@@ -85,8 +85,8 @@ describe('RestaurantHandler', () => {
 
     await restaurantHandler.update(req as Request, res as Response);
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: 'Restaurant not found' });
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Restaurant not found' });
   });
 
   it('should get a restaurant by restaurantNumber', async () => {
@@ -108,7 +108,7 @@ describe('RestaurantHandler', () => {
     });
   });
 
-  it('should return 400 if restaurant is not found by restaurantNumber', async () => {
+  it('should return 404 if restaurant is not found by restaurantNumber', async () => {
     restaurantService.getRestaurantByRestaurantNumber.mockResolvedValue(null);
 
     await restaurantHandler.getRestaurantByRestaurantNumber(
@@ -116,8 +116,8 @@ describe('RestaurantHandler', () => {
       res as Response,
     );
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: 'Restaurant not found' });
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Restaurant not found' });
   });
 
   it('should return all restaurants', async () => {

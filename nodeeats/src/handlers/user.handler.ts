@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
+import { NotFoundError } from '@customErrors/notFound.error';
 import { UserFilter } from '@customTypes/userFilter.type';
 import { CreateUserRequestDto } from '@dto/requests/createUserRequest.dto';
 import { UpdateUserRequestDto } from '@dto/requests/updateUserRequest.dto';
@@ -26,7 +27,7 @@ export class UserHandler {
     return handleRequest(res, async () => {
       const updateUserDto = new UpdateUserRequestDto(req.body);
       const user = await this.userService.update(updateUserDto);
-      if (!user) throw new Error('User not found');
+      if (!user) throw new NotFoundError('User not found');
 
       return new UserResponseDto(user);
     });
@@ -40,7 +41,7 @@ export class UserHandler {
       const user = await this.userService.getUserByUserNumber(
         req.params.userNumber,
       );
-      if (!user) throw new Error('User not found');
+      if (!user) throw new NotFoundError('User not found');
 
       return new UserResponseDto(user);
     });

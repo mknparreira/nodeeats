@@ -80,8 +80,8 @@ describe('UserHandler', () => {
 
     await userHandler.update(req as Request, res as Response);
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: 'User not found' });
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'User not found' });
   });
 
   it('should get a user by userNumber', async () => {
@@ -98,13 +98,13 @@ describe('UserHandler', () => {
     });
   });
 
-  it('should return 400 if user is not found by userNumber', async () => {
+  it('should return 404 if user is not found by userNumber', async () => {
     userService.getUserByUserNumber.mockResolvedValue(null);
 
     await userHandler.getUserByUserNumber(req as Request, res as Response);
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: 'User not found' });
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'User not found' });
   });
 
   it('should return all users', async () => {

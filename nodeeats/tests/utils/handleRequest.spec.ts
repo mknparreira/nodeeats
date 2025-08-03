@@ -31,7 +31,10 @@ describe('handleRequest', () => {
     await handleRequest(res as Response, mockHandler);
 
     expect(mockHandler).toHaveBeenCalled();
-    expect(res.status).toHaveBeenCalledWith(StatusCodes.BAD_REQUEST);
-    expect(res.json).toHaveBeenCalledWith({ error: errorMessage });
+    expect(res.status).toHaveBeenCalledWith(StatusCodes.INTERNAL_SERVER_ERROR);
+    expect(res.json).toHaveBeenCalledWith({
+      message: 'Internal Server Error',
+      errors: undefined,
+    });
   });
 });

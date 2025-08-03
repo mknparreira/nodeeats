@@ -35,6 +35,8 @@ module.exports = {
   // Path mappings to support TypeScript aliases
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
+    '^@customTypes/(.*)$': '<rootDir>/src/types/$1',
+    '^@customErrors/(.*)$': '<rootDir>/src/errors/$1',
     '^@dto/(.*)$': '<rootDir>/src/dto/$1',
     '^@entities/(.*)$': '<rootDir>/src/entities/$1',
     '^@events/(.*)$': '<rootDir>/src/events/$1',
@@ -48,7 +50,6 @@ module.exports = {
     '^@responses/(.*)$': '<rootDir>/src/responses/$1',
     '^@repositories/(.*)$': '<rootDir>/src/repositories/$1',
     '^@services/(.*)$': '<rootDir>/src/services/$1',
-    '^@customTypes/(.*)$': '<rootDir>/src/types/$1',
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
     '^@validates/(.*)$': '<rootDir>/src/validates/$1',
   },

@@ -25,6 +25,7 @@
     "paths": {
       // Define module path aliases for cleaner imports
       "@customTypes/*": ["src/types/*"],
+      "@customErrors/*": ["src/errors/*"],
       "@dto/*": ["src/dto/*"],
       "@entities/*": ["src/entities/*"],
       "@events/*": ["src/events/*"],
