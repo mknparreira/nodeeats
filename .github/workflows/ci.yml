@@ -10,6 +10,10 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: nodeeats
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,6 +23,7 @@ jobs:
         with:
           node-version: '22'
           cache: 'yarn'
+          cache-dependency-path: nodeeats/yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -30,7 +35,7 @@ jobs:
         run: yarn lint
 
       - name: Run Prettier
-        run: yarn prettier --check .
+        run: yarn format
 
       - name: Run tests
         run: yarn test
