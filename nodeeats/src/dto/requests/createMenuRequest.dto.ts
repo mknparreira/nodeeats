@@ -4,6 +4,7 @@ import { CreateMenuValidate } from '@validates/menu.validate';
 export class CreateMenuRequestDto {
   restaurantNumber: string;
   items: {
+    itemNumber: string;
     name: string;
     description?: string;
     price: number;

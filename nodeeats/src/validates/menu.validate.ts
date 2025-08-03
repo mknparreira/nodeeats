@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const MenuItemSchema = z.object({
+  itemNumber: z.string().min(1, 'Item number is required'),
   name: z.string().min(1),
   price: z.number().nonnegative(),
   categoryNumber: z.string().min(1),

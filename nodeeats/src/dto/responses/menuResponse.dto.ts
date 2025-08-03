@@ -4,6 +4,7 @@ export class MenuResponseDto {
   menuNumber: string;
   restaurantNumber: string;
   items: {
+    itemNumber: string;
     name: string;
     description?: string;
     price: number;
@@ -17,6 +18,7 @@ export class MenuResponseDto {
     this.menuNumber = menu.menuNumber.toString();
     this.restaurantNumber = menu.restaurantNumber;
     this.items = menu.items.map(item => ({
+      itemNumber: item.itemNumber,
       name: item.name,
       description: item.description,
       price: item.price,

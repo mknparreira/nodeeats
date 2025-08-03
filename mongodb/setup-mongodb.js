@@ -174,7 +174,7 @@ db.createCollection('menus', {
       required: ['menuNumber', 'restaurantNumber', 'items'],
       properties: {
         menuNumber: {
-          bsonType: 'object',
+          bsonType: 'objectId',
           description: 'must be an ObjectId and is required',
         },
         restaurantNumber: {

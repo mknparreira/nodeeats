@@ -1,6 +1,7 @@
 import mongoose, { Schema, Document } from 'mongoose';
 
 export interface IMenuItem {
+  itemNumber: string;
   name: string;
   description?: string;
   price: number;
@@ -18,6 +19,7 @@ export interface IMenu extends Document {
 
 const MenuItemSchema = new Schema<IMenuItem>(
   {
+    itemNumber: { type: String, required: true },
     name: { type: String, required: true },
     description: { type: String },
     price: { type: Number, required: true },
