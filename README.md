@@ -1,5 +1,7 @@
 # Node Eats
 
+[![Coverage Status](https://coveralls.io/repos/github/mknparreira/nodeeats/badge.svg?branch=main)](https://coveralls.io/github/mknparreira/nodeeats?branch=main)
+
 Node Eats is an educational project I developed to demostrate how I apply real-world Node.js practices using Express.
 
 It focuses on building a robust and scalable food delivery platform while applying modern software architecture and engineering principles.
