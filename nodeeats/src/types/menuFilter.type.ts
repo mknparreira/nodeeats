@@ -1,9 +1,9 @@
 export type MenuFilter = {
-  restaurantNumber?: number;
-  menuNumber?: number;
+  restaurantNumber?: string;
+  menuNumber?: string;
   itemName?: string;
-  categoryNumber?: number;
+  categoryNumber?: string;
   isAvailable?: boolean;
-  sortBy?: 'name' | 'price' | 'itemNumber';
+  sortBy?: string;
   order?: 'asc' | 'desc';
 };

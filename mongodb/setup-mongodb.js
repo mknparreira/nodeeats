@@ -174,12 +174,12 @@ db.createCollection('menus', {
       required: ['menuNumber', 'restaurantNumber', 'items'],
       properties: {
         menuNumber: {
-          bsonType: 'int',
-          description: 'must be an integer and is required',
+          bsonType: 'object',
+          description: 'must be an ObjectId and is required',
         },
         restaurantNumber: {
-          bsonType: 'int',
-          description: 'must be an integer and is required',
+          bsonType: 'string',
+          description: 'must be a string and is required',
         },
         items: {
           bsonType: 'array',
@@ -189,8 +189,8 @@ db.createCollection('menus', {
             required: ['itemNumber', 'name', 'price', 'categoryNumber'],
             properties: {
               itemNumber: {
-                bsonType: 'int',
-                description: 'must be an integer and is required',
+                bsonType: 'string',
+                description: 'must be a string and is required',
               },
               name: {
                 bsonType: 'string',
@@ -209,9 +209,9 @@ db.createCollection('menus', {
                 description: 'optional availability status',
               },
               categoryNumber: {
-                bsonType: 'int',
+                bsonType: 'string',
                 description:
-                  'category identifier. Must be an integer and is required',
+                  'category identifier. Must be a string and is required',
               },
             },
           },
@@ -230,17 +230,23 @@ db.createCollection('orders', {
   validator: {
     $jsonSchema: {
       bsonType: 'object',
-      required: ['orderId', 'userId', 'restaurantId', 'items', 'status'],
+      required: [
+        'orderNumber',
+        'userNumber',
+        'restaurantNumber',
+        'items',
+        'status',
+      ],
       properties: {
-        orderId: {
+        orderNumber: {
+          bsonType: 'object',
+          description: 'must be a string and is required',
+        },
+        userNumber: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
-        userId: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
-        },
-        restaurantId: {
+        restaurantNumber: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
@@ -248,9 +254,9 @@ db.createCollection('orders', {
           bsonType: 'array',
           items: {
             bsonType: 'object',
-            required: ['itemId', 'quantity'],
+            required: ['itemNumber', 'quantity'],
             properties: {
-              itemId: {
+              itemNumber: {
                 bsonType: 'string',
                 description: 'must be a string and is required',
               },
@@ -277,23 +283,23 @@ db.createCollection('payments', {
     $jsonSchema: {
       bsonType: 'object',
       required: [
-        'paymentId',
-        'orderId',
-        'userId',
+        'paymentNumber',
+        'orderNumber',
+        'userNumber',
         'amount',
         'status',
         'paymentMethod',
       ],
       properties: {
-        paymentId: {
+        paymentNumber: {
+          bsonType: 'object',
+          description: 'must be a string and is required',
+        },
+        orderNumber: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
-        orderId: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
-        },
-        userId: {
+        userNumber: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
@@ -321,22 +327,22 @@ db.createCollection('deliveries', {
     $jsonSchema: {
       bsonType: 'object',
       required: [
-        'deliveryId',
-        'orderId',
-        'courierId',
+        'deliveryNumber',
+        'orderNumber',
+        'courierNumber',
         'status',
         'trackingInfo',
       ],
       properties: {
-        deliveryId: {
+        deliveryNumber: {
+          bsonType: 'object',
+          description: 'must be a string and is required',
+        },
+        orderNumber: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
-        orderId: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
-        },
-        courierId: {
+        courierNumber: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
@@ -367,17 +373,23 @@ db.createCollection('reviews', {
   validator: {
     $jsonSchema: {
       bsonType: 'object',
-      required: ['reviewId', 'userId', 'restaurantId', 'rating', 'comment'],
+      required: [
+        'reviewNumber',
+        'userNumber',
+        'restaurantNumber',
+        'rating',
+        'comment',
+      ],
       properties: {
-        reviewId: {
+        reviewNumber: {
+          bsonType: 'object',
+          description: 'must be a string and is required',
+        },
+        userNumber: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
-        userId: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
-        },
-        restaurantId: {
+        restaurantNumber: {
           bsonType: 'string',
           description: 'must be a string and is required',
         },
@@ -400,10 +412,16 @@ db.createCollection('notifications', {
   validator: {
     $jsonSchema: {
       bsonType: 'object',
-      required: ['notificationId', 'userId', 'type', 'message', 'createdAt'],
+      required: [
+        'notificationNumber',
+        'userNumber',
+        'type',
+        'message',
+        'createdAt',
+      ],
       properties: {
-        notificationId: {
-          bsonType: 'string',
+        notificationNumber: {
+          bsonType: 'object',
           description: 'must be a string and is required',
         },
         userId: {

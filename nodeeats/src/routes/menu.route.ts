@@ -1,7 +1,7 @@
-import { MenuHandler } from '@handlers/menu.handler';
 import { Router } from 'express';
 import { container } from 'tsyringe';
 
+import { MenuHandler } from '@handlers/menu.handler';
 import { validate } from '@middlewares/validateRequest.middleware';
 import {
   CreateMenuValidate,

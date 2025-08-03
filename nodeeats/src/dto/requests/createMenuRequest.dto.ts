@@ -1,5 +1,4 @@
 import { IMenu } from '@entities/menu.entity';
-
 import { CreateMenuValidate } from '@validates/menu.validate';
 
 export class CreateMenuRequestDto {

@@ -1,9 +1,9 @@
-import { MenuFilter } from '@customTypes/menu.type';
-import { IMenu } from '@entities/menu.entity';
-import { MenuRepository } from '@repositories/menu.repository';
 import { injectable, inject } from 'tsyringe';
 
+import { MenuFilter } from '@customTypes/menuFilter.type';
+import { IMenu } from '@entities/menu.entity';
 import { eventEmitter } from '@providers/eventEmitter.provider';
+import { MenuRepository } from '@repositories/menu.repository';
 
 @injectable()
 export class MenuService {
@@ -25,7 +25,7 @@ export class MenuService {
     return menu;
   }
 
-  async getMenuByMenuNumber(menuNumber: number): Promise<IMenu | null> {
+  async getMenuByMenuNumber(menuNumber: string): Promise<IMenu | null> {
     return await this.menuRepository.findMenuByMenuNumber(menuNumber);
   }
 

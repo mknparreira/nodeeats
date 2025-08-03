@@ -1,23 +1,29 @@
 import { z } from 'zod';
 
 export const MenuItemSchema = z.object({
-  itemNumber: z.number().int().nonnegative(),
   name: z.string().min(1),
   price: z.number().nonnegative(),
+  categoryNumber: z.string().min(1),
   description: z.string().optional(),
-  isAvailable: z.boolean().optional(),
-  categoryNumber: z.number().int().nonnegative(),
+  isAvailable: z.boolean().default(true),
 });
 
 export const CreateMenuValidate = z.object({
-  restaurantNumber: z.number().int().nonnegative(),
+  restaurantNumber: z.string().min(1),
   items: z.array(MenuItemSchema).min(1),
 });
 
+export const UpdateMenuItemSchema = z.object({
+  itemNumber: z.string().min(1),
+  name: z.string().min(1),
+  price: z.number().nonnegative(),
+  categoryNumber: z.string().min(1),
+  description: z.string().optional(),
+  isAvailable: z.boolean().default(true),
+});
+
 export const UpdateMenuValidate = z.object({
-  menuNumber: z.number().int().nonnegative({
-    message: 'Menu number is required',
-  }),
-  restaurantNumber: z.number().int().nonnegative().optional(),
-  items: z.array(MenuItemSchema.partial()).optional(),
+  menuNumber: z.string().min(1, 'Menu number is required'),
+  restaurantNumber: z.string().optional(),
+  items: z.array(UpdateMenuItemSchema).optional(),
 });

@@ -1,7 +1,8 @@
-import { MenuFilter } from '@customTypes/menu.type';
-import { IMenu, MenuEntity } from '@entities/menu.entity';
 import mongoose from 'mongoose';
 import { injectable } from 'tsyringe';
+
+import { MenuFilter } from '@customTypes/menuFilter.type';
+import { IMenu, MenuEntity } from '@entities/menu.entity';
 
 @injectable()
 export class MenuRepository {
