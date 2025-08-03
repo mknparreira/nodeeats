@@ -131,8 +131,8 @@ All resources, including repository, service, module, model, handlers and so on.
 | ------------ | ---------------------------------------------------------------------------------------------------- | ------- |
 | User         | Manages user registration, editing, and viewing information such as name, email, and authentication. | done    |
 | Restaurant   | Manages restaurant details, menu offerings, opening hours, and availability status.                  | done    |
-| Category     | Organizes and classifies restaurants and menu items into categories.                                 | ongoing |
-| Menu         | Handles menu items for restaurants, including categories and product descriptions                    |         |
+| Category     | Organizes and classifies restaurants and menu items into categories.                                 | done    |
+| Menu         | Handles menu items for restaurants, including categories and product descriptions                    | ongoing |
 | Order        | Handles the creation, updating, and tracking of food delivery orders, including order status.        |         |
 | Payment      | Processes payments and manages payment methods.                                                      |         |
 | Delivery     | Coordinates delivery logistics, including assigning couriers and real-time tracking.                 |         |
