@@ -48,6 +48,6 @@ jobs:
         with:
           flags: unit-tests
           name: coverage-nodeeats
-          files: nodeeats/coverage/lcov.info
+          files: ./nodeeats/coverage/lcov.info
           verbose: true
           token: ${{ secrets.CODECOV_TOKEN }}
