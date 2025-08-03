@@ -127,17 +127,17 @@ For more details about packages installed, check the [Packages installed](docs/p
 
 All resources, including repository, service, module, model, handlers and so on.
 
-| Resource     | Description                                                                                          | Status  |
-| ------------ | ---------------------------------------------------------------------------------------------------- | ------- |
-| User         | Manages user registration, editing, and viewing information such as name, email, and authentication. | done    |
-| Restaurant   | Manages restaurant details, menu offerings, opening hours, and availability status.                  | done    |
-| Category     | Organizes and classifies restaurants and menu items into categories.                                 | done    |
-| Menu         | Handles menu items for restaurants, including categories and product descriptions                    | ongoing |
-| Order        | Handles the creation, updating, and tracking of food delivery orders, including order status.        |         |
-| Payment      | Processes payments and manages payment methods.                                                      |         |
-| Delivery     | Coordinates delivery logistics, including assigning couriers and real-time tracking.                 |         |
-| Review       | Enables users to leave feedback and ratings for restaurants and delivery experiences.                |         |
-| Notification | Sends order updates, promotions, and other alerts to users.                                          |         |
+| Resource     | Description                                                                                          | Status |
+| ------------ | ---------------------------------------------------------------------------------------------------- | ------ |
+| User         | Manages user registration, editing, and viewing information such as name, email, and authentication. | done   |
+| Restaurant   | Manages restaurant details, menu offerings, opening hours, and availability status.                  | done   |
+| Category     | Organizes and classifies restaurants and menu items into categories.                                 | done   |
+| Menu         | Handles menu items for restaurants, including categories and product descriptions                    | done   |
+| Order        | Handles the creation, updating, and tracking of food delivery orders, including order status.        |        |
+| Payment      | Processes payments and manages payment methods.                                                      |        |
+| Delivery     | Coordinates delivery logistics, including assigning couriers and real-time tracking.                 |        |
+| Review       | Enables users to leave feedback and ratings for restaurants and delivery experiences.                |        |
+| Notification | Sends order updates, promotions, and other alerts to users.                                          |        |
 
 # 6. Enhance API Security
 
