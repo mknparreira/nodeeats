@@ -57,7 +57,9 @@ export class MenuHandler {
         restaurantNumber: req.query.restaurantNumber as string,
         itemName: req.query.itemName as string,
         categoryNumber: req.query.categoryNumber as string,
-        isAvailable: req.query.isAvailable === 'true',
+        ...(req.query.isAvailable !== undefined && {
+          'items.isAvailable': req.query.isAvailable === 'true',
+        }),
         sortBy: req.query.sortBy as string,
         order: req.query.order as 'asc' | 'desc',
       };
