@@ -43,11 +43,16 @@ jobs:
       - name: Generate coverage report
         run: yarn test:coverage
 
+      - name: Check if lcov.info exists
+        run: ls -la ./coverage
+        working-directory: nodeeats
+
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
         with:
           flags: unit-tests
           name: coverage-nodeeats
-          files: ./nodeeats/coverage/lcov.info
+          working-directory: nodeeats
+          files: ./coverage/lcov.info
           verbose: true
           token: ${{ secrets.CODECOV_TOKEN }}
