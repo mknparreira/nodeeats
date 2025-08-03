@@ -10,21 +10,10 @@ Stores user data such as personal details, authentication credentials, and conta
 
 **Key Fields**:
 
-- userId: Unique identifier for the user.
-- name: User's name.
-- email: User's email address.
-- password: Encrypted user password.
-
-## restaurants
-
-Maintains information about restaurants, including their profiles, contact details, and operational status.
-
-**Key Fields**:
-
-- restaurantId: Unique identifier for the restaurant.
-- name: Restaurant name.
-- categories: List of categories the restaurant belongs to.
-- status: Current status (e.g., open or closed).
+- `userNumber`: Unique identifier for the user.
+- `name`: User's name.
+- `email`: User's email address.
+- `password`: Encrypted user password.
 
 ## categories
 
@@ -32,23 +21,37 @@ Defines categories used to organize restaurants and menu items.
 
 **Key Fields**:
 
-- categoryNumber: Unique identifier for the category (ObjectId).
-- name: Name of the category (must be unique).
-- slug: URL-friendly version of the category name (must be unique).
-- description: (Optional) Textual description of the category.
-- createdAt: Timestamp for when the category was created.
-- updatedAt: Timestamp for the last time the category was updated (nullable).
+- `categoryNumber`: Unique identifier for the category.
+- `name`: Category´s name.
+- `slug`: URL-friendly version of the category name.
+- `description`: Description of the category.
 
-## menus
+## restaurants
 
-Stores the menu items for each restaurant, including details such as pricing and availability.
+Maintains information about restaurants, including their profiles, contact details, and operational status.
 
 **Key Fields**:
 
-- menuId: Unique identifier for the menu item.
-- restaurantId: Reference to the associated restaurant.
-- name: Name of the menu item.
-- price: Price of the item.
+- `restaurantNumber`: Unique identifier for the restaurant.
+- `name`: Restaurant´s name.
+- `categories`: List of categories the restaurant belongs.
+- `status`: Current status (e.g., open or closed).
+
+## menus
+
+Stores the list of menu items for each restaurant, including details such as pricing, availability, and categorization.
+
+**Key Fields**:
+
+- `menuNumber`: Unique identifier for the menu.
+- `restaurantNumber`: Reference to the associated restaurant.
+- `items`: Array of items belonging to the menu. Each item includes:
+  - `itemNumber`: Unique identifier for the item within the menu.
+  - `name`: Menu´s name.
+  - `price`: Price of the item.
+  - `description`: Description of the item.
+  - `isAvailable`: Indicates if the item is currently available.
+  - `categoryNumber`: Category to which the item belongs.
 
 ## orders
 
@@ -56,10 +59,7 @@ Tracks order details, including the user who placed the order, the items ordered
 
 **Key Fields**:
 
-- orderId: Unique identifier for the order.
-- userId: Reference to the user who placed the order.
-- items: List of items included in the order.
-- status: Current status of the order (e.g., pending, completed).
+TBD
 
 ## payments
 
@@ -67,10 +67,7 @@ Manages payment details for orders, including the amount paid, payment method, a
 
 **Key Fields**:
 
-- paymentId: Unique identifier for the payment.
-- orderId: Reference to the associated order.
-- amount: Total payment amount.
-- status: Payment status (e.g., completed, failed).
+TBD
 
 ## deliveries
 
@@ -78,10 +75,7 @@ Coordinates delivery details, such as courier assignments, delivery status, and 
 
 **Key Fields**:
 
-- deliveryId: Unique identifier for the delivery.
-- orderId: Reference to the associated order.
-- status: Current delivery status.
-- trackingInfo: Real-time tracking details.
+TBD.
 
 ## reviews
 
@@ -89,10 +83,7 @@ Stores feedback and ratings provided by users for restaurants or delivery experi
 
 **Key Fields**:
 
-- reviewId: Unique identifier for the review.
-- userId: Reference to the user leaving the review.
-- rating: Numeric rating (e.g., 1–5).
-- comment: Optional feedback text.
+TBD
 
 ## notifications
 
@@ -100,7 +91,4 @@ Logs notification events sent to users, such as order updates or promotional mes
 
 **Key Fields**:
 
-- notificationId: Unique identifier for the notification.
-- userId: Reference to the recipient user.
-- type: Type of notification (e.g., order update).
-- message: Content of the notification.
+TBD

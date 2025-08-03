@@ -39,6 +39,45 @@ db.createCollection('users', {
 db.users.createIndex({ userNumber: 1 }, { unique: true });
 db.users.createIndex({ email: 1 }, { unique: true });
 
+db.createCollection('categories', {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['categoryNumber', 'name', 'slug'],
+      properties: {
+        categoryNumber: {
+          bsonType: 'string',
+          description: 'must be a string and is required',
+        },
+        name: {
+          bsonType: 'string',
+          description: 'must be a string and is required',
+        },
+        slug: {
+          bsonType: 'string',
+          description: 'must be a string and is required',
+        },
+        description: {
+          bsonType: 'string',
+          description: 'optional category description',
+        },
+        updatedAt: {
+          bsonType: ['date', 'null'],
+          description: 'optional date for last update',
+        },
+        createdAt: {
+          bsonType: 'date',
+          description: 'auto-generated creation date',
+        },
+      },
+    },
+  },
+});
+
+db.categories.createIndex({ categoryNumber: 1 }, { unique: true });
+db.categories.createIndex({ name: 1 }, { unique: true });
+db.categories.createIndex({ slug: 1 }, { unique: true });
+
 db.createCollection('restaurants', {
   validator: {
     $jsonSchema: {
@@ -128,68 +167,30 @@ db.restaurants.createIndex({ restaurantNumber: 1 }, { unique: true });
 db.restaurants.createIndex({ name: 1 }, { unique: true });
 db.restaurants.createIndex({ email: 1 }, { unique: true });
 
-db.createCollection('categories', {
-  validator: {
-    $jsonSchema: {
-      bsonType: 'object',
-      required: ['categoryNumber', 'name', 'slug'],
-      properties: {
-        categoryNumber: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
-        },
-        name: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
-        },
-        slug: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
-        },
-        description: {
-          bsonType: 'string',
-          description: 'optional category description',
-        },
-        updatedAt: {
-          bsonType: ['date', 'null'],
-          description: 'optional date for last update',
-        },
-        createdAt: {
-          bsonType: 'date',
-          description: 'auto-generated creation date',
-        },
-      },
-    },
-  },
-});
-
-db.categories.createIndex({ categoryNumber: 1 }, { unique: true });
-db.categories.createIndex({ name: 1 }, { unique: true });
-db.categories.createIndex({ slug: 1 }, { unique: true });
-
 db.createCollection('menus', {
   validator: {
     $jsonSchema: {
       bsonType: 'object',
-      required: ['menuId', 'restaurantId', 'items'],
+      required: ['menuNumber', 'restaurantNumber', 'items'],
       properties: {
-        menuId: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
+        menuNumber: {
+          bsonType: 'int',
+          description: 'must be an integer and is required',
         },
-        restaurantId: {
-          bsonType: 'string',
-          description: 'must be a string and is required',
+        restaurantNumber: {
+          bsonType: 'int',
+          description: 'must be an integer and is required',
         },
         items: {
           bsonType: 'array',
+          description: 'list of menu items and is required',
           items: {
             bsonType: 'object',
-            required: ['itemId', 'name', 'price'],
+            required: ['itemNumber', 'name', 'price', 'categoryNumber'],
             properties: {
-              itemId: {
-                bsonType: 'string',
-                description: 'must be a string and is required',
+              itemNumber: {
+                bsonType: 'int',
+                description: 'must be an integer and is required',
               },
               name: {
                 bsonType: 'string',
@@ -199,6 +200,19 @@ db.createCollection('menus', {
                 bsonType: 'number',
                 description: 'must be a number and is required',
               },
+              description: {
+                bsonType: 'string',
+                description: 'optional description of the item',
+              },
+              isAvailable: {
+                bsonType: 'bool',
+                description: 'optional availability status',
+              },
+              categoryNumber: {
+                bsonType: 'int',
+                description:
+                  'category identifier. Must be an integer and is required',
+              },
             },
           },
         },
@@ -206,6 +220,11 @@ db.createCollection('menus', {
     },
   },
 });
+
+db.menus.createIndex({ menuNumber: 1 }, { unique: true });
+db.menus.createIndex({ restaurantNumber: 1 });
+db.menus.createIndex({ 'items.itemNumber': 1 });
+db.menus.createIndex({ 'items.categoryNumber': 1 });
 
 db.createCollection('orders', {
   validator: {
