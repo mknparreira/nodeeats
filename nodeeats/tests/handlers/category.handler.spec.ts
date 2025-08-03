@@ -85,8 +85,8 @@ describe('CategoryHandler', () => {
 
     await categoryHandler.update(req as Request, res as Response);
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: 'Category not found' });
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Category not found' });
   });
 
   it('should get a category by categoryNumber', async () => {
@@ -105,13 +105,13 @@ describe('CategoryHandler', () => {
     });
   });
 
-  it('should return 400 if category is not found by categoryNumber', async () => {
+  it('should return 404 if category is not found by categoryNumber', async () => {
     categoryService.getCategoryByCategoryNumber.mockResolvedValue(null);
 
     await categoryHandler.getCategoryById(req as Request, res as Response);
 
-    expect(res.status).toHaveBeenCalledWith(400);
-    expect(res.json).toHaveBeenCalledWith({ error: 'Category not found' });
+    expect(res.status).toHaveBeenCalledWith(404);
+    expect(res.json).toHaveBeenCalledWith({ message: 'Category not found' });
   });
 
   it('should return all categories', async () => {

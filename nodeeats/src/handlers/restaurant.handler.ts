@@ -1,3 +1,4 @@
+import { NotFoundError } from '@customErrors/notFound.error';
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
@@ -29,7 +30,7 @@ export class RestaurantHandler {
     return handleRequest(res, async () => {
       const updateDto = new UpdateRestaurantRequestDto(req.body);
       const restaurant = await this.restaurantService.update(updateDto);
-      if (!restaurant) throw new Error('Restaurant not found');
+      if (!restaurant) throw new NotFoundError('Restaurant not found');
 
       return new RestaurantResponseDto(restaurant);
     });
@@ -44,7 +45,7 @@ export class RestaurantHandler {
         await this.restaurantService.getRestaurantByRestaurantNumber(
           req.params.restaurantNumber,
         );
-      if (!restaurant) throw new Error('Restaurant not found');
+      if (!restaurant) throw new NotFoundError('Restaurant not found');
 
       return new RestaurantResponseDto(restaurant);
     });

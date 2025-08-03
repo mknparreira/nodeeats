@@ -1,3 +1,4 @@
+import { BaseError } from '@customErrors/baseError.error';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
@@ -11,7 +12,14 @@ export const errorMiddleware = (
 ) => {
   logger.error('ErrorMiddleware | Error::', JSON.stringify(err));
 
-  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-    error: err.message || 'Internal Server Error',
+  if (err instanceof BaseError) {
+    return res.status(err.statusCode).json({
+      message: err.message,
+      errors: err.errors,
+    });
+  }
+
+  return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    message: 'Internal Server Error',
   });
 };

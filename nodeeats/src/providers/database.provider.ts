@@ -1,3 +1,5 @@
+import { BaseError } from '@customErrors/baseError.error';
+import { StatusCodes } from 'http-status-codes';
 import mongoose from 'mongoose';
 
 import { eventEmitter } from '@providers/eventEmitter.provider';
@@ -9,7 +11,10 @@ export class DatabaseProvider {
     try {
       mongoose.set('strictQuery', true);
       if (this.DATABASE_URL == null) {
-        throw new Error('DATABASE_URL is not defined');
+        throw new BaseError(
+          'DATABASE_URL is not defined',
+          StatusCodes.INTERNAL_SERVER_ERROR,
+        );
       }
       await mongoose.connect(this.DATABASE_URL);
       eventEmitter.emit('database.connected', 'MongoDB connected successfully');
