@@ -1,6 +1,6 @@
 # Node Eats
 
-[![Coverage Status](https://coveralls.io/repos/github/mknparreira/nodeeats/badge.svg?branch=main)](https://coveralls.io/github/mknparreira/nodeeats?branch=main)
+[![codecov](https://codecov.io/gh/mknparreira/nodeeats/branch/main/graph/badge.svg)](https://codecov.io/gh/mknparreira/nodeeats)
 
 Node Eats is an educational project I developed to demostrate how I apply real-world Node.js practices using Express.
 
