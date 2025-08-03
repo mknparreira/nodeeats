@@ -13,7 +13,12 @@ async function handleRequest<T>(
     const result = await handle();
     return res.status(StatusCodes.OK).json({ data: result });
   } catch (error) {
-    logger.error('HandleRequest | Error:', error);
+    console.error(JSON.stringify(error, null, 2));
+    logger.error('HandleRequest | Error:', {
+      name: (error as Error).name,
+      message: (error as Error).message,
+      stack: (error as Error).stack,
+    });
 
     if (error instanceof BaseError) {
       return res.status(error.statusCode).json({
