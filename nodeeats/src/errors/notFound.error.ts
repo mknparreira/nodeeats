@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
-import { BaseError } from './baseError.error';
+import { BaseError } from '@customErrors/baseError.error';
 
 export class NotFoundError extends BaseError {
   constructor(message = 'Resource not found') {

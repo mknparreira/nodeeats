@@ -1,8 +1,7 @@
-// src/errors/zodValidationError.ts
 import { StatusCodes } from 'http-status-codes';
 import { ZodError } from 'zod';
 
-import { BaseError } from './baseError.error';
+import { BaseError } from '@customErrors/baseError.error';
 
 export class ZodValidationError extends BaseError {
   constructor(zodError: ZodError) {

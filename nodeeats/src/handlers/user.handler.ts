@@ -1,7 +1,7 @@
-import { NotFoundError } from '@customErrors/notFound.error';
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
+import { NotFoundError } from '@customErrors/notFound.error';
 import { UserFilter } from '@customTypes/userFilter.type';
 import { CreateUserRequestDto } from '@dto/requests/createUserRequest.dto';
 import { UpdateUserRequestDto } from '@dto/requests/updateUserRequest.dto';

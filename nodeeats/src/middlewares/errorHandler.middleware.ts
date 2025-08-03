@@ -1,7 +1,7 @@
-import { BaseError } from '@customErrors/baseError.error';
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
+import { BaseError } from '@customErrors/baseError.error';
 import { logger } from '@providers/logger.provider';
 
 export const errorMiddleware = (

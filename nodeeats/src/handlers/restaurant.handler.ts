@@ -1,7 +1,7 @@
-import { NotFoundError } from '@customErrors/notFound.error';
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
+import { NotFoundError } from '@customErrors/notFound.error';
 import { RestaurantFilter } from '@customTypes/restaurantFilter.type';
 import { CreateRestaurantRequestDto } from '@dto/requests/createRestaurantRequest.dto';
 import { UpdateRestaurantRequestDto } from '@dto/requests/updateRestaurantRequest.dto';

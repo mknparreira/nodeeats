@@ -1,7 +1,7 @@
-import { NotFoundError } from '@customErrors/notFound.error';
 import { Request, Response } from 'express';
 import { injectable, inject } from 'tsyringe';
 
+import { NotFoundError } from '@customErrors/notFound.error';
 import { CategoryFilter } from '@customTypes/categoryFilter.type';
 import { CreateCategoryRequestDto } from '@dto/requests/createCategoryRequest.dto';
 import { UpdateCategoryRequestDto } from '@dto/requests/updateCategoryRequest.dto';

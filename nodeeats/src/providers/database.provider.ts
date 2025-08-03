@@ -1,7 +1,7 @@
-import { BaseError } from '@customErrors/baseError.error';
 import { StatusCodes } from 'http-status-codes';
 import mongoose from 'mongoose';
 
+import { BaseError } from '@customErrors/baseError.error';
 import { eventEmitter } from '@providers/eventEmitter.provider';
 
 export class DatabaseProvider {

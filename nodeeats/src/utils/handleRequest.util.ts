@@ -1,8 +1,8 @@
-import { BaseError } from '@customErrors/baseError.error';
-import { InternalServerError } from '@customErrors/internalServer.error';
 import { Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
+import { BaseError } from '@customErrors/baseError.error';
+import { InternalServerError } from '@customErrors/internalServer.error';
 import { logger } from '@providers/logger.provider';
 
 async function handleRequest<T>(
