@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { ZodSchema } from 'zod';
 
-import { ZodValidationError } from '../errors/zodValidation.error';
+import { ZodValidationError } from '@customErrors/zodValidation.error';
 
 export const validate =
   <T>(schema: ZodSchema<T>) =>
