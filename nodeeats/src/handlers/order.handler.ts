@@ -4,7 +4,6 @@ import { injectable, inject } from 'tsyringe';
 import { NotFoundError } from '@customErrors/notFound.error';
 import { OrderFilter } from '@customTypes/orderFilter.type';
 import { CreateOrderRequestDto } from '@dto/requests/createOrderRequest.dto';
-import { UpdateOrderRequestDto } from '@dto/requests/updateOrderRequest.dto';
 import { OrderResponseDto } from '@dto/responses/orderResponse.dto';
 import { IOrder } from '@entities/order.entity';
 import { OrderService } from '@services/order.service';
@@ -25,17 +24,6 @@ export class OrderHandler {
       return new OrderResponseDto(order);
     });
   }
-
-  public async update(req: Request, res: Response): Promise<Response> {
-    return handleRequest(res, async () => {
-      const updateDto = new UpdateOrderRequestDto(req.body);
-      const order = await this.orderService.update(updateDto);
-      if (!order) throw new NotFoundError('Order not found');
-
-      return new OrderResponseDto(order);
-    });
-  }
-
   public async getOrderByOrderNumber(
     req: Request,
     res: Response,

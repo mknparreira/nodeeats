@@ -18,14 +18,6 @@ export class OrderService {
     return order;
   }
 
-  async update(data: Partial<IOrder>): Promise<IOrder | null> {
-    data.updatedAt = new Date();
-    const order = await this.orderRepository.edit(data);
-    eventEmitter.emit('order.updated', order);
-
-    return order;
-  }
-
   async getOrderByOrderNumber(orderNumber: string): Promise<IOrder | null> {
     return await this.orderRepository.findOrderByOrderNumber(orderNumber);
   }
