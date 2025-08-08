@@ -231,52 +231,93 @@ db.createCollection('orders', {
     $jsonSchema: {
       bsonType: 'object',
       required: [
-        'orderNumber',
         'userNumber',
         'restaurantNumber',
         'items',
         'status',
+        'paymentNumber',
+        'totalAmount',
       ],
       properties: {
-        orderNumber: {
-          bsonType: 'object',
-          description: 'must be a string and is required',
-        },
         userNumber: {
           bsonType: 'string',
-          description: 'must be a string and is required',
+          description: 'User identifier - required',
         },
         restaurantNumber: {
           bsonType: 'string',
-          description: 'must be a string and is required',
+          description: 'Restaurant identifier - required',
         },
         items: {
           bsonType: 'array',
+          minItems: 1,
           items: {
             bsonType: 'object',
-            required: ['itemNumber', 'quantity'],
+            required: [
+              'menuItemNumber',
+              'name',
+              'quantity',
+              'unitPrice',
+              'totalPrice',
+            ],
             properties: {
-              itemNumber: {
+              menuItemNumber: {
                 bsonType: 'string',
-                description: 'must be a string and is required',
+                description: 'Menu item identifier - required',
+              },
+              name: {
+                bsonType: 'string',
+                description: 'Menu item name - required',
               },
               quantity: {
                 bsonType: 'int',
                 minimum: 1,
-                description:
-                  'must be an integer greater than 0 and is required',
+                description: 'Quantity must be >= 1 - required',
+              },
+              unitPrice: {
+                bsonType: ['double', 'decimal', 'int', 'long'],
+                minimum: 0,
+              },
+              totalPrice: {
+                bsonType: ['double', 'decimal', 'int', 'long'],
+                minimum: 0,
               },
             },
           },
         },
         status: {
-          enum: ['pending', 'confirmed', 'delivered', 'cancelled'],
-          description: 'must be one of the defined statuses',
+          enum: [
+            'pending',
+            'confirmed',
+            'preparing',
+            'ready',
+            'delivered',
+            'cancelled',
+          ],
+          description: 'Order status - required',
         },
+        paymentNumber: {
+          bsonType: 'string',
+          description: 'Payment transaction identifier - required',
+        },
+        totalAmount: {
+          bsonType: 'double',
+          minimum: 0,
+          description: 'Total amount of the order - required',
+        },
+        specialInstructions: {
+          bsonType: ['string', 'null'],
+          description: 'Optional customer notes',
+        },
+        createdAt: { bsonType: 'date' },
+        updatedAt: { bsonType: ['date', 'null'] },
       },
     },
   },
 });
+
+db.orders.createIndex({ orderNumber: 1 }, { unique: true });
+db.orders.createIndex({ userNumber: 1 });
+db.orders.createIndex({ restaurantNumber: 1 });
 
 db.createCollection('payments', {
   validator: {
